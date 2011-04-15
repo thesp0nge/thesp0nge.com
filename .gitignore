@@ -1,0 +1,4 @@
+output/*
+outbox/*
+file_changes.yaml
+tmp/*
