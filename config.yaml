@@ -1,0 +1,50 @@
+text_extensions: [ 'css', 'erb', 'haml', 'htm', 'html', 'js', 'less', 'textile', 'rb', 'txt', 'xhtml', 'xml', 'md' ]
+
+output_dir: output
+
+index_filenames: [ 'index.html' ]
+
+enable_output_diff: false
+
+data_sources:
+  -
+    # The type is the identifier of the data source. By default, this will be
+    # `filesystem_unified`.
+    type: filesystem_unified
+
+    # The path where items should be mounted (comparable to mount points in
+    # Unix-like systems). This is “/” by default, meaning that items will have
+    # “/” prefixed to their identifiers. If the items root were “/en/”
+    # instead, an item at content/about.html would have an identifier of
+    # “/en/about/” instead of just “/about/”.
+    items_root: /
+
+    # The path where layouts should be mounted. The layouts root behaves the
+    # same as the items root, but applies to layouts rather than items.
+    layouts_root: /
+
+deploy:
+  default:
+    dst: "goliath.armoredcode.com:/var/www/thesp0nge.com"
+    options: ['-ave ssh', '--exclude=.DS_Store', '--exclude=*~']
+
+base_url: http://thesp0nge.com
+
+google_analytics:
+  domain: thesp0nge.com
+  site_id: UA-22580002-1
+  
+# currently used by logo
+site_name: thesp0nge and the city
+
+# number of full featured posts to display on front
+featured_count: 1
+
+# number of excerpted posts to display on front
+excerpt_count: 3
+
+# number of other articles to reference at bottom of each article
+other_articles_max: 3
+
+# DISQUS Site Shortname. Comment out to disable.
+disqus_shortname: thesp0ngeandthecity

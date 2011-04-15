@@ -1,0 +1,108 @@
+---
+created_at: 2011-04-08
+excerpt: tutorial in pi&ugrave; puntate per vedere come usare un generatore di pagine statiche per creare un blog. Setup iniziale.
+kind: article
+publish: true
+lang: it
+tags: [howto, ruby, nanoc, blog]
+title: "Creare un blog in pochi passi con nanoc. Parte 1"
+place: Gessate
+---
+
+%p
+  Quando ho dovuto scegliere la piattaforma tecnologica da usare per implementare 
+  %a{:href=>'http://thesp0nge.com'}thesp0nge.com
+  avevo tre strade ben distinte:
+
+  %ul
+    %li un blog engine esistente sia esso in hosting che in house (wordpress.com, posterous, liveournal.com)
+    %li 
+      realizzare qualcosa di custom con un engine commerciale come 
+      %em 
+        expression engine
+    %li realizzare qualcosa di completamente custom in ruby ed scegliere tra rails, sinatra o padrino.
+%p
+  Alla fine ho scelto una quarta alternativa: utilizzare ruby ed un generatore di html statico come
+  %a{:href=>'http://nanoc.stoneship.org'}nanoc.
+%p
+  Le motivazioni sono legate essenzialmente alla velocit&agrave; con cui la pagina verr&agrave; mostrata all'utente e la libert&agrave; datami da ruby per la costruzione della pagina stessa.
+  %br
+  Quello che devo dare al mio lettore, oltre ad un contenuto di valore, &egrave; un meccanismo per inserire dei commenti ed eventualmente segnalare il mio post in giro per i vari social network.
+  %br
+  Tutto questo, si pu&ograve; risolvere con servizi come 
+  %a{:href=>'http://www.disqus.com'}disqus
+  per i commenti e con le API di facebook e twitter che mi permettono di interagire con i vari sistemi dalla loro interfaccia REST.
+%p
+  Liberi quindi da controlli server side, da database e da tutte le implicazioni che un'architettura a 3 livelli comporta dal punto di vista della security. In fondo questo vuole essere solamente un blog!
+%p
+  Iniziamo quindi... ci serve:
+  %ul
+    %li
+      una postazione di lavoro dove sia installato e funzionante 
+      %a{:href=>'http://www.ruby-lang.org/en/'}ruby
+      e la gemma 
+      %a{:href=>'http://nanoc.stoneship.org/'}nanoc
+    %li
+      un editor di testo, 
+      %a{:href=>'http://vim.org'}vim
+      andr&agrave; benissimo
+%p 
+  Tutto pronto? Benissimo, incominciamo creando un nuovo progetto nanoc.
+  %pre
+    %code
+      $ nanoc create_site myblog.com && cd myblog.com
+%p
+  nanoc avr&agrave; creato per voi, all'interno della directory myblog.com le
+  directory content e layout che saranno utilizzate rispettivamente per
+  contenere i post del nostro blog e per i template delle pagine.
+  %br
+  Nonostante non si stia parlando n&egrave; di rails n&egrave; di framework
+  MVC, la suddivisione chiara tra logica applicativa e presentazione &egrave;
+  se vogliamo rinforzata anche nel layout dei progetti di nanoc.
+
+  %pre
+    %code.language-ruby.coderay
+      :preserve
+        namespace :create do
+
+          desc "Creates a new article"
+            task :article do
+              $KCODE = 'UTF8'
+              require 'active_support/core_ext'
+              require 'active_support/multibyte'
+              @ymd = Time.now.to_s(:db).split(' ')[0]
+              if !ENV['title']
+                $stderr.puts "\t[error] Missing title argument.\n\tusage: rake create:article title='article title'"
+                exit 1
+              end
+
+              title = ENV['title'].capitalize
+              path, filename, full_path = calc_path(title)
+
+              if File.exists?(full_path)
+                 $stderr.puts "\t[error] Exists #{full_path}"
+                                      exit 1
+                                        end
+
+                                          template = <<TEMPLATE
+                                            ---
+                                              created_at: #{@ymd}
+                                                excerpt: 
+                                                  kind: article
+                                                    publish: true
+                                                      lang: it
+                                                        tags: [misc]
+                                                          title: "#{title.titleize}"
+                                                            place: Gessate
+                                                              ---
+
+                                                                TODO: Add content to `#{full_path}.`
+                                                                  TEMPLATE
+
+                                                                    FileUtils.mkdir_p(path) if !File.exists?(path)
+                                                                      File.open(full_path, 'w') { |f| f.write(template) }
+                                                                        $stdout.puts "\t[ok] Edit #{full_path}"
+                                                                          end
+
+
+

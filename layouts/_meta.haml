@@ -1,0 +1,25 @@
+---
+---
+
+- disable_reaction ||= false
+- is_embedded ||= false
+- show_lang ||= false
+.meta
+
+  - if disqus_shortname && ! disable_reaction && ! is_embedded
+    - @config[:include_disqus_js] = true
+    %h3.disqus_thread
+      %a{:href=>"#{route_path(item)}#disqus_thread"}
+
+  - if (item[:kind] == 'article') || (item[:kind] == 'startup')
+    %ul.tags
+      - if item[:tags]
+        Filed in: 
+        - item[:tags].sort.each do |tag|
+          %li.tag
+            %a(href="/tags/#{tag}/" class='tag')
+              = tag
+        - if show_lang
+          - item[:lang].each do |l|
+            %li.tag
+              %img{:src=>'/images/'+l+'.png'}

@@ -1,0 +1,18 @@
+---
+title: Un p&ograve; ruby, un p&ograve; rails, un p&ograve; application security ma soprattutto me
+---
+
+.content
+  .related
+    %ul
+      -sorted_articles.each do |post|
+        %li
+          %span.date
+            = pretty_time(post[:created_at])
+          %a{:href=>"#{route_path(post)}", :title=>"Full article"}= post[:title]
+          %br
+            %span.excerpt
+              =post[:excerpt]
+          .clear
+          = render('_meta', :item=>post, :disable_reaction=>true, :show_lang=>true)
+

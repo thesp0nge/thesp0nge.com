@@ -1,0 +1,45 @@
+---
+---
+
+- is_embedded ||= false
+- show_lang ||= false
+
+.content
+  .post
+    - if is_embedded
+      %a(href="#{route_path(item)}" title="Full article" class="permalink")= item[:title]
+
+    - else
+      %h1
+        = item[:title]
+      .date
+        = item[:place]
+        ,
+        = pretty_time(item[:created_at])
+ 
+
+    = render('_meta', :item => item, :show_lang=>show_lang)
+    
+    - if is_embedded
+      %p
+        = item[:excerpt]
+      %p.date
+        Wrote the
+        = pretty_time(item[:created_at])
+        %br
+        %span{:class=>"read"}
+          %a{:href=>"#{route_path(item)}"}
+            Read the full post &raquo;
+    -else
+      %p 
+        != content || partial(item)
+      %p
+        %div{:id=>"disqus_thread"}
+          :javascript
+            var disqus_shortname = 'armoredblog';
+            var disqus_identifier = '#{route_path(item)}';
+            (function() {
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
