@@ -1,0 +1,85 @@
+---
+created_at: 2011-04-26
+excerpt: Inizia qui una serie di post sullo stato dell'arte della sicurezza applicativa e di come applicarne i principi alle web application ancora prima di scrivere una sola riga di codice.
+kind: article
+publish: true
+lang: [it]
+tags: [appsec, wapt, owasp, code review, kitchen]
+title: "Quanto è sicuro il mio codice?"
+place: Gessate
+---
+%p
+  Non sono certo che la sicurezza informatica sia una priorità per molti
+  project manager. Anzi, credo sia una vera e propria scocciatura, una piega
+  che li costringe a pensare 
+  %em
+    out of the box
+  rispetto a schemi Gantt e fogli Excel.
+  %br
+  Scrivere codice sicuro? Perché? 
+  %ul
+    %li tanto io non sono una banca quindi figurati se vengono a darmi fastidio
+    %li renderei il mio codice lento con controlli inutili
+    %li ho già un buon web application firewall
+%p
+  Non è un elenco esaustivo, però queste 3 frasi le ho sentite personalmente
+  almeno un paio di volte, quindi le cito per prime. La conclusione è che ad un
+  PM medio non importa di scrivere codice di qualità. Preferisce far uscire un
+  MVP o un semilavorato per aggiungere funzionalità in un secondo momento, un
+  po' come se un'applicazione fosse un patchwork.
+
+%p
+  Sulla mia pelle ho imparato invece quanto segue: partire scrivendo i test
+  case e facendo 
+  %a{:href=>'http://en.wikipedia.org/wiki/Test-driven_development'}TDD 
+  o ancora meglio 
+  %a{:href=>'http://en.wikipedia.org/wiki/Behavior_Driven_Development'}BDD
+  non solo alla lunga rende più agevole lo sviluppo, ma permette di costruire
+  codice sicuro by design evitando di perdere tempo dopo, a seguito di
+  penetration test vari.
+%p
+  Nell'ambito di un ciclo di vita non razionalizzato e gestito un po'
+  allegramente, il livello di qualità generale del codice non potrà che essere
+  scadente in maniera indipendente dalla bravura degli sviluppatori. Elevato
+  tournover, schedulazioni pressanti sono fattori che spingono chi scrive
+  codice a produrre qualcosa che funzioni subito ma che sovente sta in piedi
+  con lo sputo.
+%p
+  Scrivere codice sicuro si può fare senza neanche troppe regole auree o corsi 
+  %a{:href=>'http://www.owasp.org'}owasp compliant.
+  %br
+  L'importante è disaccoppiare la business logic dalla presentation in maniera
+  tale da rendere quest'ultima il più priva possibile di alcun tipo di
+  intelligenza. La maggior parte della logica applicativa deve risiedere nei
+  nostri modelli e lì dovremmo fare tutta la validazione dei parametri prima di
+  far arrivare il flusso ai dati sul DB.
+  %br
+  Ora, preso il nostro framework MVC preferito, iniziamo a scrivere codice con
+  una mentalità difensiva, cercando di pensare a come possa essere preso di
+  mira da un attaccante e siamo a cavallo, in questo modo scriveremo codice
+  sicuro.
+  %br
+  Zzzzzzzzt - rumore di covoni di fieno che rotolano in una strada assolata e
+  spaccata dal sole.
+  %br
+  Ma che dannazione significa che devo pensare a come il mio codice possa
+  essere sovvertito? 
+%p
+  In effetti è un'affermazione che lascia il tempo che trova e che è un buon
+  titolo per un paragrafo da "Corso pratico di sviluppo sicuro". In realtà se
+  io modello attraverso dei test case, il comportamento atteso dalla mia
+  applicazione e vado a definire cosa deve succedere in caso di errori, in caso
+  di input lecito ed in caso di input non lecito, io sto facendo programmazione
+  difensiva.
+  %br
+  Disegno il mio codice in maniera robusta.
+%p
+  Questo mi eviterà il pericolo di XSS o SQL Injection? Assolutamente no, ma
+  almeno non ci troveremo a dover gestire imbarazzanti leak di informazione
+  alla prima eccezione non gestita.
+%p
+  %a{:href=>'http://www.cenzic.com'}Cenzic
+  proporrà un webinar il prossimo 12 Maggio dal titolo volutamente provocatorio: 
+  %a{:href=>'https://event.on24.com/eventRegistration/EventLobbyServlet?target=registration.jsp&eventid=304247&sessionid=1&key=6B7171BCAA475A8D8D9D96C71571A46B&partnerref=cenzichomebanner&sourcepage=register'}The State of Web Application Security: Important as Coffee?
+%p
+  Tutto il mondo è paese?
