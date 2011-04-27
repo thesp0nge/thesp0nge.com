@@ -429,7 +429,7 @@ div.clear {
 .coderay {
   /*background-color: #666;*/
   font-family: 'Menlo', 'Andale Mono', 'Monaco', 'Courier New', 'Terminal', monospace;
-  color: #E6E0DB;
+  color: #666;
   font-size: 12px;
   margin: 12px 0;
 }

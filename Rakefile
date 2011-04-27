@@ -33,7 +33,7 @@ kind: article
 publish: true
 lang: [it]
 tags: [misc]
-title: "#{title.titleize}"
+title: "#{title.capitalize}"
 place: Gessate
 ---
 
@@ -72,7 +72,7 @@ kind: startup
 publish: true
 lang: [it]
 tags: [misc]
-name: "#{name.titleize}"
+name: "#{name.capitalize}"
 url: 
 place: Gessate
 ---

@@ -20,7 +20,7 @@ compile '*' do
     filter :haml
     filter  :colorize_syntax,
       :colorizers => { :ruby => :coderay },
-      :coderay    => { :line_numbers => :inline }
+      :coderay    => { :line_numbers => :inline}
 
   elsif ext == 'md' || ext == 'markdown'
     filter :erb
