@@ -36,9 +36,10 @@ place: Gessate
   errata.
   %pre
     %code{:class=>'language-ruby coderay'}
-      def Scooter &lt; Item, Veicolo
-      do stuff
-      end
+      :escaped
+          def Scooter < Item, Veicolo
+          # do stuff
+        end
 %p
   In passato mi sono trovato a superare il problema dell'ereditarietà singola
   in java, ad esempio utilizzando interfaccie ed attraverso una gerarchia a
@@ -70,23 +71,25 @@ place: Gessate
   descrivere i veicoli e gli item.
   %pre
     %code{:class=>'language-ruby coderay'}
-      module Item
-      def cost=(price)
-      @my_price=price
-      end
-      def cost
-      @my_price
-      end
+      :escaped
+          module Item
+          def cost=(price)
+            @my_price=price
+          end
+          def cost
+            @my_price
+          end
       end
   %pre
     %code{:class=>'language-ruby coderay'}
-      module Veicolo
-      def wheels=(wheels_no)
-      @wheels_no=wheels_no
-      end
-      def wheels
-      @wheels_no
-      end
+      :escaped
+          module Veicolo
+          def wheels=(wheels_no)
+            @wheels_no=wheels_no
+          end
+          def wheels
+            @wheels_no
+          end
       end
 %p
   Ora per includere i nostri moduli e creare il mixin non serve altro che
@@ -95,18 +98,19 @@ place: Gessate
     include.
   %pre
     %code{:class=>'language-ruby coderay'}
-      class Scooter
-      include Item
-      include Veicolo
-      def initialize(options=nil)
-      self.cost=options['cost'] unless options['cost']
-      self.wheels=options['wheels'] unless options['wheels']
-      end
-      def to_s
-      puts 'Sono uno scooter'
-      puts 'Ho ' + self.wheels.to_s + ' ruote'
-      puts 'Costo ' + self.cost.to_s + ' euro'
-      end
+      :escaped
+          class Scooter
+          include Item
+          include Veicolo
+          def initialize(options=nil)
+            self.cost=options['cost'] unless options['cost']
+            self.wheels=options['wheels'] unless options['wheels']
+          end
+          def to_s
+            puts 'Sono uno scooter'
+            puts 'Ho ' + self.wheels.to_s + ' ruote'
+            puts 'Costo ' + self.cost.to_s + ' euro'
+          end
       end
 %p
   Semplice e permette di avere una definizione di classe che è pulita e
