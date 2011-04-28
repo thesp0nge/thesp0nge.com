@@ -449,8 +449,8 @@ div.clear {
     
 
 .coderay .ch { color:#509E4F }        /* escaped character */
-.coderay .cl { color:#FFF }           /* class */
-.coderay .co { color:#FFF }           /* constant */
+.coderay .cl { color:#666 }           /* class */
+.coderay .co { color:#666 }           /* constant */
 .coderay .fl { color:#A4C260 }        /* float */
 .coderay .fu { color:#FFC56D }        /* function */
 .coderay .gv { color:#D0CFFE }        /* global variable */
