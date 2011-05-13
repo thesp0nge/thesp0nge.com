@@ -55,6 +55,10 @@
           &nbsp;
 
         .site
+
+          %a{:href=>'http://www.armoredcode.com'}
+            %img{:src=>"/images/armored_logo.png", :width=>"88"}
+
           %a{:href=>'https://github.com/thesp0nge', :id=>'github'}
             %img{:src=>'/images/github.png', :alt=>'github', :title=>'@thesp0nge github archive', :height=>'16', :width=>'16'}
           %a{:href=>'http://twitter.com/thesp0nge', :id=>'twitter'}
@@ -63,6 +67,8 @@
             %img{:src=>'/images/rss.png', :alt=>'rss', :title=>'Subscribe to this blog\'s RSS feed', :height=>'16', :width=>'16'}
           %a{:href=>"http://feeds.feedburner.com/Thesp0ngecomAtomFeed"}
             %img{:src=>"http://feeds.feedburner.com/~fc/Thesp0ngecomAtomFeed?bg=da3d26&amp;fg=FFFFFF&amp;anim=0", :height=>"26", :width=>"88", :style=>"border:0", :alt=>""}
+          %a{:href=>"http://www.blogitalia.it/", :target=>"_blank", :title=>"BlogItalia - La directory italiana dei blog"}
+            %img{:src=>"http://www.blogitalia.it/images/antipixel.gif", :width=>"80", :height=>"15", :alt=>"BlogItalia - La directory italiana dei blog", :border=>"0"}
         %nav
           != link_unless_current "about"
           != link_unless_current "startup"
