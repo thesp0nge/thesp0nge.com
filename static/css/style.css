@@ -199,6 +199,10 @@ input#email {
 .info {
   color: green;
 }
+strong {
+  color: #741012;
+  font-weight: bold;
+} 
 
 ul.sub {
 	padding: 20px 70px 0 70px;
