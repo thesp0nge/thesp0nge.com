@@ -12,11 +12,12 @@
 }
 
 
-body {
+/*body {
 	line-height: 1;
   font-family: 'Copse', 'Georgia', 'Times New Roman', serif;
   -webkit-font-smoothing: antialiased;
 }
+  */
 
 ol, ul {
 	list-style: none;
@@ -180,9 +181,10 @@ span.date {
 
 p {
 	padding: 15px 70px 0 70px;
-  line-height: 1.7em;
 	font: normal 18px/22px Cardo, Georgia, 'Times New Roman', Times, serif;
-	color: #938462;
+  line-height: 1.7em;
+	/* color: #938462; */
+  color: black;
 }
 
 input#email {
@@ -361,6 +363,7 @@ li.faq {
   color: #555;
   border-color: #555;
 }
+/*
 .post p{
   margin-bottom: 1.2em;
   padding-left: 0px;
@@ -369,12 +372,12 @@ li.faq {
   font: normal 18px Cardo, Georgia, 'Times New Roman', Times, serif;
 
 }
+  */
 .post ul {
-  padding-left: 20px;
-  color: #938462;
-  font: normal 15px Cardo, Georgia, 'Times New Roman', Times, serif;
+  padding-left: 100px;
   list-style: circle;
 }
+
 h3.disqus_thread {
   padding-bottom: 15px;
 }
@@ -470,3 +473,13 @@ div.clear {
 .coderay .pc { color:#6C9CBD }        /* boolean */
 
 
+/* 
+ * ABOUT PAGE
+ */
+
+div#about.content p:first-letter {
+  font-size: 1.5em;
+  margin-top: 5px;
+  padding-right: 2px;
+  color: #741012;
+}
