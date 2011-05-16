@@ -483,3 +483,17 @@ div#about.content p:first-letter {
   padding-right: 2px;
   color: #741012;
 }
+ul.talks {
+  margin-left: 90px;
+}
+span.title, span.talk{
+  display:block;
+}
+span.talk {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 1.2em;
+}
+span.time {
+  font-style: italic;
+}
