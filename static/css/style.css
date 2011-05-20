@@ -441,7 +441,7 @@ div.clear {
   margin: 12px 0;
 }
 .coderay pre {
-  margin-left: 90px;
+  margin: 0px;
   padding: 0px;
 }
 
@@ -496,4 +496,8 @@ span.talk {
 }
 span.time {
   font-style: italic;
+}
+
+div.post pre {
+  margin-left: 90px;
 }
