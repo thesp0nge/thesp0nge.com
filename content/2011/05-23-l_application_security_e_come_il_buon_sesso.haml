@@ -1,0 +1,85 @@
+---
+created_at: 2011-05-23
+excerpt: Continui attacchi a siti della Sony. Intrusioni nel sito del DoD. Sembra che scrivere buon software non sia una priorità per nessuno.
+kind: article
+publish: true
+lang: [it]
+tags: [appsec, application security, ruby on rails, secure by design, secure framework]
+title: "L'application security è come il buon sesso... "
+place: Gessate
+---
+
+%p
+  "... tutti ne perlano ma in pochi lo fanno". 
+%p
+  A prima vista sembra che veramente tutti abbiano a cura i propri clienti, che
+  usino il best of breed dell'application security, che facciano code review,
+  che facciano penetration test e poi invece Sony viene bucata per l'ennessima
+  volta nell'ultimo periodo ed alcuni siti in 
+  %a{:href=>'http://www.bitcity.it/news/22424/cade-anche-il-sito-di-sony-bmg-in-grecia.html'}
+    Grecia
+  pagano il dazio di una politica di deploy totalmente condotta a casaccio.
+%p
+  Come se non bastasse, sono entrati i soliti ignoti anche in siti del
+  dipartimento della difesa americano ed altri siti
+  %a{:href=>'http://www.thehackernews.com/2011/05/exclusive-report-is-department-of.html'}
+    istituzionali
+  a stelle e strisce.
+%p
+  Da un lato mi consola la cosa, l'Italia in fondo in questo non è messa
+  male... neanche gli altri fanno nulla sul fronte della sicurezza del codice.
+%p
+  Ok l'ultima era ironica forte.
+%p
+  Mi lascio andare in una considerazione/flusso di coscienza. Ditemi se la
+  sparo troppo grossa secondo voi. 
+  %br
+  Ci abbiamo provato coi 
+  %strong
+    penetration test 
+  ma le persone obiettavano che i risultati erano troppo 
+  %strong
+    difficili 
+  da leggere. 
+  %br
+  Ci abbiam provato con la 
+  %strong 
+    code review
+  ma ci han detto che i tool costano troppo e le operazioni di fix troppo
+  %strong
+    onerose
+  da mettere in campo per il loro team di sviluppo.
+%p
+  Ci sono state sessioni di 
+  %strong
+    tutoring
+  ma è difficile cambiare in corsa il modo di lavorare.
+  %br
+  A questo punto mi sembra chiaro che la messa in sicurezza del codice
+  applicativo è qualcosa che alla massa non importa veramente alcunché. Se mi
+  state per obiettare che la Sony fa giochi e non fa security, fermatevi un
+  attimo a pensare ora chi comprerebbe una PS3 mettendo il numero di carta di
+  credito in un sistema gestito dal colosso nipponico.
+  %br
+  Comunque la giri, Sony ha perso un sacco di soldi. Che sia il core business o meno.
+%p
+  A questo punto, perché non spostare la sicurezza in un punto dove non la puoi
+  togliere, dove non sei costretto a metterla e dove le tue abitudini restano
+  immutate?
+  %br
+  I
+  %strong
+    framework web.
+%p
+  La comunità Ruby ci ha già pensato e 
+  %a{:href=>'http://rubyonrails.org'}
+    Rails
+  ha delle misure minime di protezione contro cross-site scripting e per design anche contro le SQL Injection.
+  %br
+  A questo punto potrebbe veramente aver senso annegare le ESAPI nei framework
+  web e negli application server lasciano ai pigri la libertà di non fare nulla
+  ma almeno salvaguardando l'ignaro utente.
+%p
+  Troppo grossa?
+
+
