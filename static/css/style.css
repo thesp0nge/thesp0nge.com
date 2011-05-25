@@ -11,14 +11,6 @@
   text-align: justify;
 }
 
-
-/*body {
-	line-height: 1;
-  font-family: 'Copse', 'Georgia', 'Times New Roman', serif;
-  -webkit-font-smoothing: antialiased;
-}
-  */
-
 ol, ul {
 	list-style: none;
 }
@@ -35,15 +27,28 @@ header {
   font-family: 'Neucha', 'Andale Mono', 'Menlo', 'Helvetica Neue', Helvetica, sans-serif;
 }
 
-header .avatar{
+.avatar{
+  float:left; 
   border: 1px solid #fff;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
+  -o-border-radius: 5px;
+  -border-radius: 5px;
   -webkit-box-shadow: 0px 0px 4px #555;
+  -moz-box-shadow: 0px 0px 4px #555;
+  -o-box-shadow: 0px 0px 4px #555;
+  -box-shadow: 0px 0px 4px #555;
 }
 
-header a{
-  text-decoration: none;
+header .avatar:hover{
+  -webkit-transform: rotate(-15deg);
+  -moz-transform: rotate(-15deg);
+  -o-transform: rotate(-15deg);
+  -transform: rotate(-15deg);
+                        }
+
+                        header a{
+                          text-decoration: none;
 }
 
 header #me{
@@ -53,7 +58,7 @@ header #me{
 header #paolo{
   font-size: 25px;
   letter-spacing: 4px;
-  
+
   color: #cd1e25;
 }
 header #paolo:hover {
@@ -104,14 +109,14 @@ header nav a:hover{
 
 
 #wrapper {
-	display: block;
-	padding: 5% 0;
+  display: block;
+  padding: 5% 0;
 }
 
 .content {
   margin-left: 110px;
   margin-bottom: 50px;
-	width: 80%;
+  width: 80%;
 }
 
 .related{
