@@ -1,8 +1,11 @@
-.content
-  .related
-    %ul
-      -startups.each do |s|
-        %li
-          %a{:href=>"#{route_path(s)}", :title=>"Full article"}= s[:name]
-          = s[:excerpt]
-          = render('_meta', :item=>s, :disable_reaction=>true, :show_lang=>true)
+---
+title: le mie startup
+kind: article
+---
+%p
+  %ul
+    -startups.each do |s|
+      %li
+        %a{:href=>"#{route_path(s)}", :title=>"Full article"}= s[:name]
+        = s[:excerpt]
+        = render('_meta', :item=>s, :disable_reaction=>true, :show_lang=>true)

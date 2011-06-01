@@ -35,16 +35,16 @@ google_analytics:
   site_id: UA-22580002-1
   
 # currently used by logo
-site_name: thesp0nge and the city
+site_name: thesp0nge.com
 
 # number of full featured posts to display on front
 featured_count: 1
 
 # number of excerpted posts to display on front
-excerpt_count: 3
+excerpt_count: 5
 
 # number of other articles to reference at bottom of each article
 other_articles_max: 3
 
 # DISQUS Site Shortname. Comment out to disable.
-disqus_shortname: thesp0ngeandthecity
+disqus_shortname: thesp0nge

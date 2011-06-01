@@ -4,39 +4,34 @@
 - is_embedded ||= false
 - show_lang ||= false
 
-.content
-  .post
-    - if is_embedded
-      %a(href="#{route_path(item)}" title="Full article" class="permalink")= item[:title]
-
-    - else
-      %h1
-        = item[:title]
-      .date
-        = item[:place]
-        ,
-        = pretty_time(item[:created_at])
- 
-
-    = render('_meta', :item => item, :show_lang=>show_lang)
+%header
+  %h2
+    =item[:title]
+  %span.italic
+    scritto il 
+    %time
+      = pretty_time(item[:created_at])
+  = render('_meta', :item => item, :show_lang=>show_lang)
+  .clearfix
     
-    - if is_embedded
-      %p
-        = item[:excerpt]
-      %p.date
-        Wrote the
-        = pretty_time(item[:created_at])
-        %br
-        %span{:class=>"read"}
-          %a{:href=>"#{route_path(item)}"}
-            Read the full post &raquo;
-    -else
+    
+- if is_embedded
+  %section
+    %p
+      = item[:excerpt]
+  %footer
+    %a{:href=>"#{route_path(item)}"}
+      %span.read_more
+        Leggi tutto &raquo;
+    %hr
+  -else
+    %section
       %p 
         != content || partial(item)
       %p
         %div{:id=>"disqus_thread"}
           :javascript
-            var disqus_shortname = 'armoredblog';
+            var disqus_shortname = 'thesp0nge';
             var disqus_identifier = '#{route_path(item)}';
             (function() {
               var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
