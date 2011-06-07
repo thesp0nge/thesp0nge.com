@@ -71,10 +71,14 @@
             != link_unless_current "talks"
             != link_unless_current "about"
         %hr
-        - if @item[:kind] == 'article'
+        - if @item[:kind] == 'article' 
 
           %article#fullpage
             = render('_article', :item => @item, :content => content)
+          .clearfix
+        - if @item[:kind] == 'startup'
+          %article#fullpage
+            = render('_startup', :item =>@item, :content =>content)
           .clearfix
         - if disqus_shortname && !is_front_page?
           = render('_disqus', :item => @item)
