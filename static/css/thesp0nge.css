@@ -71,6 +71,11 @@ img#social {
   font-size: 1.3em;
   font-style: italic;
 }
+article#about section p {
+  margin-left: 100px;
+  margin-right: 100px;
+  line-height: 1.4em;
+}
 /* FEATURED ARTICLE */
 article.featured header h2{
   font-size: 2.2em;
@@ -196,8 +201,8 @@ div#license {
 }
 /* Fine footer */
 
-article#fullpage section {
+article#fullpage section p {
   margin-top: 10px;
   font-size: 1.2em;
-  line-height: 1.5em;
+  line-height: 2em;
 }
