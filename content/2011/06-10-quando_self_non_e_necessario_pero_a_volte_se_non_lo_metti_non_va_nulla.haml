@@ -38,10 +38,11 @@ place: Gessate
   mi fa l'assegnazione prima del salvataggio.
   %pre
     %code{:class=>'language-ruby coderay'}
-      def slugify
-        self.slug_en = name_en.parameterize 
-        self.slug_it = name_it.parameterize 
-      end
+      :escaped
+        def slugify
+          self.slug_en = name_en.parameterize 
+          self.slug_it = name_it.parameterize 
+        end
 %p
   Ora, se io mi trovo nel modello, il self dovrebbe essere superfluo in quanto
   è scontato che io non voglia creare una nuova variabile che ha lo stesso nome
