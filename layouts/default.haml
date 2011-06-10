@@ -74,7 +74,7 @@
         - if @item[:kind] == 'article' 
 
           %article#fullpage
-            = render('_article', :item => @item, :content => content)
+            = render('_article', :item => @item, :content => content, :show_lang=>true)
           .clearfix
         - if @item[:kind] == 'startup'
           %article#fullpage

@@ -6,12 +6,16 @@ title: Paolo Perego - secure software craftsman
     &nbsp;
   %section
     %p
-      Ciao e benvenuto su thesp0nge.com. Mi chiamo Paolo, sono uno sviluppatore Ruby on Rails e nello stesso tempo penetration tester e code reviewer. Sono un leader di due progetti 
-      %a{:href=>'http://www.owasp.org'}
-        Owasp
-      e sono nel board di Owasp Italy.
-    %p
-      Questo è il mio blog dove parlo di application security, ruby on rails, bdd, tdd e gtd e tutto quanto può aiutare a lavorare meglio. A volte parlo anche di me, di musica, di taekwondo, di mia moglie e mio figlio ed in generale di quello che mi fa battere il cuore.
+      Ciao e benvenuto su 
+      %strong
+        thesp0nge.com. 
+      Questo è il mio sito personale. Qui dove parlo di application security,
+      ruby on rails, objective-c, sviluppo per mac e iphone, di startup, di
+      metodologie come bdd, tdd e gtd e tutto quanto può aiutare a lavorare
+      meglio. 
+      %br
+      A volte parlo anche di me, di musica, di taekwondo, di mia moglie e mio
+      figlio ed in generale di quello che mi fa battere il cuore.
   %footer
     %hr
     
@@ -23,7 +27,7 @@ title: Paolo Perego - secure software craftsman
   - current_index += 1
   %article{:class=>"featured"}
     - item[:featured] = true
-    = render('_article', :item => item, :is_embedded=> true)
+    = render('_article', :item => item, :is_embedded=> true, :show_lang=>true)
 
 #post_list_box
   %h2#post_list_title

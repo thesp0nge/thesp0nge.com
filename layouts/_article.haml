@@ -4,15 +4,25 @@
 - is_embedded ||= false
 - show_lang ||= false
 
-%header
-  %h2
-    =item[:title]
-  %span.italic
-    scritto il 
-    %time
-      = pretty_time(item[:created_at])
-  = render('_meta', :item => item, :show_lang=>show_lang)
-  .clearfix
+-if is_embedded
+  %header
+    %a{:href=>"#{route_path(item)}", :title=>"Full article"}
+      %h2
+        = item[:title]
+    %h4
+      %time
+        = pretty_time(item[:created_at])
+    = render('_meta', :item => item, :show_lang=>show_lang, :is_embedded=>is_embedded )
+    .clearfix
+- else
+  %header
+    %h1
+      =item[:title]
+    %h4
+      %time
+        = pretty_time(item[:created_at])
+    = render('_meta', :item => item, :show_lang=>show_lang, :is_embedded => is_embedded) 
+    .clearfix
     
     
 - if is_embedded

@@ -4,7 +4,9 @@ body {
   background-image: url(../images/bg.png);
   background-repeat: repeat-x;
 
-  text-align: justify; font-family: Copse, Georgia, Cambria, serif;}
+  text-align: justify; 
+  font-family: Georgia, Cambria, Copse, serif;
+}
 
 a, a:visited { 
   color: #741012;
@@ -69,11 +71,9 @@ img#social {
 }
 #about {
   font-size: 1.3em;
-  font-style: italic;
+  /** font-style: italic; **/
 }
 article#about section p {
-  margin-left: 100px;
-  margin-right: 100px;
   line-height: 1.4em;
 }
 /* FEATURED ARTICLE */
@@ -200,6 +200,10 @@ div#license {
   float:right;
 }
 /* Fine footer */
+
+article#fullpage h1 {
+  font-size: 2.5em;
+}
 
 article#fullpage section p {
   margin-top: 10px;

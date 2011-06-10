@@ -23,3 +23,8 @@
           - item[:lang].each do |l|
             %li.tag
               %img{:src=>'/images/'+l+'.png'}
+  - if ! is_embedded
+    %share
+      %script{:src=>"http://connect.facebook.net/en_US/all.js#xfbml=1"}
+        = "<fb:like layout=\"box_count\"></fb:like>"
+
