@@ -24,7 +24,21 @@
             %li.tag
               %img{:src=>'/images/'+l+'.png'}
   - if ! is_embedded
-    %share
-      %script{:src=>"http://connect.facebook.net/en_US/all.js#xfbml=1"}
-        = "<fb:like layout=\"box_count\"></fb:like>"
+    .clearfix
+    .share
+      #fb-root
+      %script{:src=>"http://connect.facebook.net/en_US/all.js"}
+      :javascript
+        FB.init({
+          status : true, // check login status
+          cookie : true,
+          xfbml  : true
+          });
 
+      = "<fb:like href='http://thesp0nge.com#{route_path(item)}' width='450' height='80'/>"
+    .clearfix
+     
+      %a{:href=>"http://twitter.com/share", :class=>"twitter-share-button", :"data-count"=>"horizontal", :"data-via"=>"thesp0nge"}
+        Tweet
+
+      %script{:type=>"text/javascript", :src=>"http://platform.twitter.com/widgets.js"}

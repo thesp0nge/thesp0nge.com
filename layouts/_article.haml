@@ -1,5 +1,12 @@
 ---
 ---
+- content_for :fb do
+  %meta{:property=>"og:title", :content=>item[:title]}
+  %meta{:property=>"og:type", :content=>'blog'}
+  %meta{:property=>"og:url", :content=>"http://thesp0nge.com#{route_path(item)}"}
+  %meta{:property=>"og:image", :content=>"http://thesp0nge.com/images/armored_logo.png"}
+  %meta{:property=>"og:site_name", :content=>"thesp0nge.com - secure software craftsman"}
+  %meta{:property=>"og:description", :content=>item[:excerpt]}
 
 - is_embedded ||= false
 - show_lang ||= false
