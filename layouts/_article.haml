@@ -20,7 +20,7 @@
     %h4
       %time
         = pretty_time(item[:created_at])
-    = render('_meta', :item => item, :show_lang=>show_lang, :is_embedded=>is_embedded )
+    = render('_meta', :item => item, :show_lang=>show_lang, :is_embedded=>is_embedded, :show_social=>false)
     .clearfix
 - else
   %header
@@ -29,7 +29,7 @@
     %h4
       %time
         = pretty_time(item[:created_at])
-    = render('_meta', :item => item, :show_lang=>show_lang, :is_embedded => is_embedded) 
+    = render('_meta', :item => item, :show_lang=>show_lang, :is_embedded => is_embedded, :show_social=>true) 
     .clearfix
     
     

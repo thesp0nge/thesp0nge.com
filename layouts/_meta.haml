@@ -3,6 +3,7 @@
 
 - disable_reaction ||= false
 - is_embedded ||= false
+- show_social ||= false
 - show_lang ||= false
 .meta
 
@@ -23,7 +24,7 @@
           - item[:lang].each do |l|
             %li.tag
               %img{:src=>'/images/'+l+'.png'}
-  - if ! is_embedded
+  - if show_social
     .clearfix
     .share
       #fb-root
