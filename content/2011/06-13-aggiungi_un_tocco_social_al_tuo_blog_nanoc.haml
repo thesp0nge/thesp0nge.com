@@ -1,0 +1,123 @@
+---
+created_at: 2011-06-13
+excerpt: Non serve una tecnologia server side per dare la possibilità ai nostri lettori di condividere via facebook o twitter i nostri post. Basta un po' di javascript e le API dei maggiori siti social.
+kind: article
+publish: true
+lang: [it]
+tags: [social, facebook, twitter, nanoc, ruby, blog]
+title: "Aggiungi un tocco social al tuo blog nanoc"
+place: Gessate
+---
+
+%p
+  Il pallino in testa lo avevo da un po'. Aggiungere la possibilità di
+  condividere su facebook e twitter i post qui sul mio blog.
+  %br
+  Un po' per avere un feedback su chi legge e se gradisce quanto scrivo,
+  soprattutto per avere un ritorno lato SEO.
+%p
+  Integrare facebook è la cosa più complessa. Quello che volevo evitare, in
+  entrambi i casi, era il censimento del blog ed il dover utilizzare una
+  particolare chiave o token per fare autenticazione oauth o altre diavolerie.
+  %br 
+  Sono partito aggiungendo al mio file layouts/default.haml, che gestisce il
+  template principale di ciascuna pagina, un blocco che mi permette di
+  includere dei tag meta ad hoc. 
+  %br
+  Questi tag devono essere specifici per ogni pagina, ecco perché non posso
+  camblarli all'interno del mio layout.
+  %br
+  Quindi proprio prima dell'inizio del body ho aggiunto:
+  %pre
+    %code{:class=>'language-ruby coderay'}
+      :escaped
+        = @item[:content_for_fb]
+%p
+  Per poter utilizzare poi il tag fb:like, arricchisco la definizione del mio
+  tag HTML.
+  %pre
+    %code{:class=>'language-ruby coderay'}
+      :escaped
+        %html{:"xmlns:og"=>"http://ogp.me/ns#", :"xmlns:fb"=>"https://www.facebook.com/2008/fbml"}
+
+%p
+  Ora, nel partial render che è deputato ad ospitare i meta di ciascun
+  articolo, inserisco il collegamento al javascript di facebook e popolo con i
+  tag necessari per inserire il pulsante like. Incidentalmente qui è anche il
+  posto dove inserisco la parte relativa a twitter.
+  %pre
+    %code{:class=>'language-ruby coderay'}
+      :escaped
+        #fb-root
+        %script{:src=>"http://connect.facebook.net/en_US/all.js"}
+        :javascript
+          FB.init({
+            status : true, // check login status
+            cookie : true,
+            xfbml  : true
+            });
+
+        = "<fb:like href='http://thesp0nge.com#{route_path(item)}' width='450' height='80'/>"
+%p
+  Il div con id 
+  %code
+    fb-root
+  serve al SDK per inserire in maniera asincrona il codice del pulsante
+  "Like.". Come si può vedere l'inizializzazione del SDK attraverso FB.init non
+  prevede l'utilizzo di alcuna chiave o token questo perché vogliamo fare tutto
+  client side senza authenticazione oauth lato server.
+%p
+  Usando il tag fb:like a questo punto ho tutto quanto per visualizzare il
+  pulsante like e tenere traccia di chi ha apprezzato il mio scritto.
+%p
+  Visto che siamo in questo partial, vediamo al volo invece cosa serve per
+  twitter. In realtà veramente poco, basta includere l'SDK e poi chiamarlo :-)
+  %pre
+    %code{:class=>'language-ruby coderay'}
+      :escaped
+        %a{:href=>"http://twitter.com/share", :class=>"twitter-share-button", :"data-count"=>"horizontal", :"data-via"=>"thesp0nge"}
+        Tweet
+
+        %script{:type=>"text/javascript", :src=>"http://platform.twitter.com/widgets.js"}
+%p
+  Abbiamo finito? No ancora no. Per poter fare il like su facebook ogni
+  articolo deve essere arricchito con dei metadata che verranno mostrati nel
+  post che apparirà sul wall di chi ha condiviso il mio post tanto
+  interessante.
+%p
+  Il posto dove definisco queste informazioni è nel partial
+  layouts/_article.haml e ovviamente devo includere queste informazioni
+  nell'header della mia pagina web in output.
+  %pre
+    %code{:class=>'language-ruby coderay'}
+      :escaped
+        - content_for :fb do
+          %meta{:property=>"og:title", :content=>item[:title]}
+          %meta{:property=>"og:type", :content=>'blog'}
+          %meta{:property=>"og:url", :content=>"http://thesp0nge.com#{route_path(item)}"}
+          %meta{:property=>"og:image", :content=>"http://thesp0nge.com/images/armored_logo.png"}
+          %meta{:property=>"og:site_name", :content=>"thesp0nge.com - secure software craftsman"}
+          %meta{:property=>"og:description", :content=>item[:excerpt]}
+          %meta{:property=>"fb:admins", :content=>"1334034919"}
+
+%p
+  L'unico punto un po' oscuro è quello degli admins. Facebook vuole che tu
+  specifichi uno user ID che sarà eletto amministratore per questa pagina.
+  Ovviamente ognuno di voi dovrà recuperare il proprio id facebook. Come
+  trovarlo? Semplice. Andate 
+  %a{:href=>'https://graph.facebook.com/thesp0nge'}
+    qui.
+  %br
+  Al posto di thesp0nge dovrete mettere ovviamente il vostro nickname che avete
+  scelto quando vi è stata data la possibilità di avere una url personalizzata,
+  un po' di tempo fa.
+%p
+  Ora, se tutto è andato come deve, ci sono due pulsanti per fare in modo che
+  tutti quanti facciano sapere al mondo intero quanto amano i post che
+  scrivete... il tutto senza scrivere una riga di codice lato server.
+%p
+  Sono veramente orgoglioso del mio blog statico.
+%p 
+  Ora andate a mettere like a questo articolo, condividetelo su twitter e
+  fatemi diventare una blogstar.
+
