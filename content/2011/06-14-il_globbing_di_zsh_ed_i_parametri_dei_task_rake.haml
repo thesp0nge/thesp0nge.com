@@ -1,0 +1,66 @@
+---
+created_at: 2011-06-14
+excerpt: Per poter utilizzare i parametri dei task rake da linea di comando e la vostra zsh, dovete impostare un piccolo alias altrimenti non funzionerà nulla
+kind: article
+publish: true
+lang: [it]
+tags: [zsh, unix, ruby, rake]
+title: "Il globbing di zsh ed i parametri dei task rake"
+place: Gessate
+---
+
+%p
+  Riposto questo anche qui, ma i credits vanno tutti a 
+  %a{:href=>'http://scottw.me/post/1124165521/zsh-and-rake-parameters'}
+    Scott
+  che ha scritto il post originale.
+%p
+  Voi avete scritto un task rake, molto simile a questo:
+  %pre
+    %code{:class=>'language-ruby coderay'}
+      :escaped
+        namespace :users do
+          desc 'Purge a list of users and revive associated coupons'
+          task :clean, :filename, :needs => :environment do |t, args|
+
+          if args[:filename].nil?
+            puts 'usage: rake users:clean filename=filename_to_use'
+            fail
+          end
+          # task body ...
+%p
+  Se state usando la 
+  %a{:href=>'http://www.zsh.org/'}
+    zsh
+  otterrete un laconico messaggio di errore:
+  %pre
+    %code{:class=>'language-shell coderay'}
+      :escaped
+        $ rake users:clean[./lib/PULIZIA_DB]
+        zsh: no matches found: users:clean[./lib/PULIZIA_DB]
+%p
+  Come spiegato da 
+  %a{:href=>'http://scottw.me/post/1124165521/zsh-and-rake-parameters'}
+    Scott
+  la soluzione è quella di dichiarare un alias per rake: 
+  %pre
+    %code{:class=>'language-shell coderay'}
+      :escaped
+        rake='noglob rake'
+%p
+  Però già che ci siamo eliminiamo il warning noioso che ci da rake
+  %pre
+    %code{:class=>'language-shell coderay'}
+      :escaped
+        WARNING: 'task :t, arg, :needs => [deps]' is deprecated.  Please use 'task :t, [args] => [deps]' instead.
+  %br 
+  Cambiamo quindi la definizione del nostro task rake in questo modo:
+  %pre
+    %code{:class=>'language-ruby coderay'}
+      :escaped
+        namespace :users do
+          desc 'Purge a list of users and revive associated coupons'
+          task :clean, [:filename] => :environment do |t, args|
+%p
+  Sparito anche il messaggio di warning, ed il buon giorno è servito.
+
