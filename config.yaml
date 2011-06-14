@@ -38,7 +38,7 @@ google_analytics:
 site_name: thesp0nge.com
 
 # number of full featured posts to display on front
-featured_count: 1
+featured_count: 1 
 
 # number of excerpted posts to display on front
 excerpt_count: 5

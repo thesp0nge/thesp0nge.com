@@ -12,6 +12,7 @@ namespace :create do
     require 'active_support/core_ext'
     require 'active_support/multibyte'
     @ymd = Time.now.to_s(:db).split(' ')[0]
+
     if !ENV['title']
       $stderr.puts "\t[error] Missing title argument.\n\tusage: rake create:article title='article title'"
       exit 1
@@ -27,7 +28,7 @@ namespace :create do
 
     template = <<TEMPLATE
 ---
-created_at: #{@ymd}
+created_at: #{Time.now.to_s}
 excerpt: 
 kind: article
 publish: true
