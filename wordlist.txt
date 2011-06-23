@@ -1,0 +1,27 @@
+owasp: 70
+ruby on rails: 50
+sinatra: 20
+c: 40
+linux: 25
+mac os x: 35
+opensource: 60
+hacking: 40
+penetration test: 70
+code review: 80
+application security: 80
+photography: 20
+taekwondo: 20
+technical writing: 25
+blogging: 25
+kernel hacking: 30
+git: 15
+iphone: 50
+objective c: 50
+java: 30
+gtd: 30
+test driven development: 40
+behavior driven development: 40
+rspec: 30
+cucumber: 30
+downshift: 25
+freelance: 50
