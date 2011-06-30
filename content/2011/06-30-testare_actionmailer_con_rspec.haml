@@ -1,0 +1,102 @@
+---
+created_at: 2011-06-30 08:58:49 +0200
+excerpt: Dobbiamo verificare se il codice per l'invio di email che abbiamo appena scritto funziona? Non inondiamo gli amici di email, usiamo Rspec.
+kind: article
+publish: true
+lang: [it]
+tags: [ruby, ruby on rails, action mailer, tdd, bdd]
+title: "Testare ActionMailer con Rspec"
+place: Gessate
+---
+
+%p
+  Dite la verità. Voi scrivete applicazioni web che inviano email. Tutti lo
+  facciamo, non bisogna vergognarsi di questo. Come testare però la
+  funzionalità del nostro codice senza inondare le mailbox nostre o dei nostri
+  amici di email di test?
+  %em
+    Verginelli
+  non mi direte mica che non sapete che rspec è vostro amico anche per questo,
+  vero?
+%p
+  Vabbé, ecco quello che ho scoperto che si può fare. Magari torna utile a
+  qualcuno.
+%p
+  Prima di tutto, se non avete mai utilizzato ActionMailer prima di oggi, vi
+  rimando alla 
+  %a{:href=>'http://edgeguides.rubyonrails.org/action_mailer_basics.html'}
+    documentazione ufficiale.
+%p
+  Partiamo quindi dal presupposto che abbiate creato un vostro mailer e teniamo
+  buono tutto il codice presente negli esempi che trovate sul sito di 
+  %a{:href=>'http://edgeguides.rubyonrails.org/action_mailer_basics.html'}
+    rails.
+
+  %pre
+    %code{:class=>'language-ruby coderay'}
+      :escaped
+        rails g mailer UserMailer
+  
+%p
+  Ok, ora che siamo finalmente pronti scriviamo il nostro Rspec per testare il
+  nostro controller UserController.
+  %br
+  Nel blocco before(:all) configuriamo ActionMailer specificando che siamo in
+  un ambiente di test e quindi non deve mandare veramente email.
+  %pre
+    %code{:class=>'language-ruby coderay'}
+      :escaped
+        before (:all) do
+          @user = Factory(:user)
+          ActionMailer::Base.delivery_method = :test
+          ActionMailer::Base.perform_deliveries = true
+          ActionMailer::Base.deliveries = []
+        end
+  %br
+  Nell'ombra avremo creato una 
+  %a{:href=>'https://github.com/thoughtbot/factory_girl/wiki'}
+    Factory
+  per i nostri utenti.
+  %pre
+    %code{:class=>'language-ruby coderay'}
+      :escaped
+        Factory.define :user do |u|
+          u.name 'Paolo'
+          u.surname 'Perego'
+          u.email   'paolo@armoredcode.com'
+        end
+%p
+  Ora creiamo il vero test
+  %pre
+    %code{:class=>'language-ruby coderay'}
+      :escaped
+        it "should send the email" do
+          post 'create', :user=>{:email=>@u.email, 
+            :name=>@u.name, 
+            :surname=>@u.surname} 
+          # qui testiamo che la mail sia partita
+          ActionMailer::Base.deliveries.size.should == 1 
+
+          # prendiamo la mail e vediamo sia stata costruita correttamente
+          mail = ActionMailer::Base.deliveries[0]
+          mail.to.should include @u.email
+          mail.subject.should == "Welcome to My Awesome Site"
+          mail.body.should =~ /\#{@user.name}/
+        end
+%p
+  Eseguiamo il test
+  %pre
+    %code{:class=>'language-ruby coderay'}
+      :escaped
+        bundle exec rspec ./spec/controllers/user_controller_spec.rb
+%p
+  %em
+    Et voilà
+  nessuna email ha inondato il cyberspazio ma abbiamo testato l'invio della
+  stessa. 
+  %br
+  Potremmo continuare aggiungengo regexp per testare il body della mail, ma
+  quello dipende da quello che state facendo.
+
+
+

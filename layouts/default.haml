@@ -66,7 +66,7 @@
         %nav
           %ul
             != link_unless_current "index"
-            -#!= link_unless_current "blog"
+            != link_unless_current "posts"
             != link_unless_current "startup"
             != link_unless_current "puzzle"
             != link_unless_current "books"
@@ -78,6 +78,12 @@
           %article#fullpage
             = render('_article', :item => @item, :content => content, :show_lang=>true)
           .clearfix
+        - if @item[:kind] == 'page' 
+
+          %article#fullpage
+            = render('_article', :item => @item, :content => content, :show_lang=>true)
+          .clearfix
+ 
         - if @item[:kind] == 'startup'
           %article#fullpage
             = render('_startup', :item =>@item, :content =>content)

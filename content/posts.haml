@@ -1,0 +1,31 @@
+---
+title: Indice dei post
+kind: page
+---
+
+#post_list_box
+  %h2#post_list_title
+    Tutti i post
+  %ul#post_list
+    -sorted_articles.each do |post|
+      %li
+        %article.index
+          %header
+            %a{:href=>"#{route_path(post)}", :title=>"Full article"}
+              %h3
+                = post[:title]
+            %h4
+              %time
+                = pretty_time(post[:created_at])
+            .clearfix
+            = render('_meta', :item=>post, :disable_reaction=>true, :show_lang=>true)
+          .clearfix
+          %section
+            %p
+              =post[:excerpt]
+          %footer
+            %a{:href=>"#{route_path(post)}", :title=>"Full article"}
+              %span.read_more
+                Leggi tutto &raquo;
+            %hr
+
