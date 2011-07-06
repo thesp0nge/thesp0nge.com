@@ -214,3 +214,14 @@ em {
   color: #741012;
   font-style: italic;
 }
+li {
+  font-size: 1.2em;
+}
+
+div#about.content p:first-letter {
+  font-size: 1.5em;
+  margin-top: 5px;
+  padding-right: 2px;
+  color: #741012;
+}
+

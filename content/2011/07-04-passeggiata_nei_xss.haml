@@ -4,7 +4,7 @@ excerpt: Cross site scripting, croce e delizia di chi scrive e di chi testa appl
 kind: article
 publish: true
 lang: [it]
-tags: [application security, xss, owasp, owasp top 10, appsec, cross, hacking, ruby, rails, sinatra]
+tags: [application security, xss, owasp, owasp top 10, appsec, cross, hacking, ruby, rails, sinatra, hf4]
 title: "Passeggiata nei xss"
 place: Gessate
 ---
@@ -101,7 +101,7 @@ place: Gessate
 
         %form{:action=>'/', :method=>'post', :id=>'subscriber'}
           %p
-            %label{:for=>'email'}Subscribe to codesake.com updates (we won't spam... we promise!)
+            %label{:for=>'email'}Subscribe to codesake.com updates (we wont spam... we promise!)
             %br
             %input{:type=>'text', :name=>'subscriber[email]', :placeholder=>'Enter your email address', :id=>'email', :size=>'50'}
             %br
