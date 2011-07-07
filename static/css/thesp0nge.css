@@ -224,4 +224,12 @@ div#about.content p:first-letter {
   padding-right: 2px;
   color: #741012;
 }
+div#about.content p {
+  padding-bottom: 20px;
+}
+div#about.content h2 {
+  color: #741012;
+  font-size: 1.8em;
+}
+
 
