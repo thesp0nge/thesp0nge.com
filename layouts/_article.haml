@@ -23,7 +23,6 @@
     = render('_meta', :item => item, :show_lang=>show_lang, :is_embedded => is_embedded, :show_social=>true) 
     .clearfix
     
-    
 - if is_embedded
   %section
     %p
@@ -35,6 +34,12 @@
     %hr
   -else
     %section
+      %p
+        %hr
+        = render('_advertize')
+        %hr
+
+
       %p 
         != content || partial(item)
       %p

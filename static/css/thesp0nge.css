@@ -232,4 +232,7 @@ div#about.content h2 {
   font-size: 1.8em;
 }
 
-
+ul.share li {
+  list-style: none;
+  display: inline;
+}

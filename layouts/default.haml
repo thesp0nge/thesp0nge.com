@@ -73,10 +73,11 @@
           %ul
             != link_unless_current "index"
             != link_unless_current "posts"
+            != link_unless_current "articles"
+            != link_unless_current "talks"
+            != link_unless_current "books"
             != link_unless_current "startup"
             != link_unless_current "puzzle"
-            != link_unless_current "books"
-            != link_unless_current "talks"
             != link_unless_current "about"
         %hr
         - if @item[:kind] == 'article' 
