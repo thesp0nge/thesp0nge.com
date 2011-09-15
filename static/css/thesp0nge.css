@@ -236,3 +236,11 @@ ul.share li {
   list-style: none;
   display: inline;
 }
+
+.haiku {
+  margin-left: 200px;
+  line-height: 2em;
+  font-family: 'Nothing You Could Do', cursive;
+  font-size: 2em;
+  color: #741012;
+}
