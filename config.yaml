@@ -1,5 +1,3 @@
-text_extensions: [ 'css', 'erb', 'haml', 'htm', 'html', 'js', 'less', 'textile', 'rb', 'txt', 'xhtml', 'xml', 'md' ]
-
 output_dir: output
 
 index_filenames: [ 'index.html' ]
@@ -7,20 +5,8 @@ index_filenames: [ 'index.html' ]
 enable_output_diff: false
 
 data_sources:
-  -
-    # The type is the identifier of the data source. By default, this will be
-    # `filesystem_unified`.
+  - items_root: /
     type: filesystem_unified
-
-    # The path where items should be mounted (comparable to mount points in
-    # Unix-like systems). This is “/” by default, meaning that items will have
-    # “/” prefixed to their identifiers. If the items root were “/en/”
-    # instead, an item at content/about.html would have an identifier of
-    # “/en/about/” instead of just “/about/”.
-    items_root: /
-
-    # The path where layouts should be mounted. The layouts root behaves the
-    # same as the items root, but applies to layouts rather than items.
     layouts_root: /
 
 deploy:
@@ -38,7 +24,7 @@ google_analytics:
 site_name: thesp0nge.com
 
 # number of full featured posts to display on front
-featured_count: 1 
+featured_count: 6
 
 # number of excerpted posts to display on front
 excerpt_count: 5
@@ -48,3 +34,4 @@ other_articles_max: 3
 
 # DISQUS Site Shortname. Comment out to disable.
 disqus_shortname: thesp0nge
+

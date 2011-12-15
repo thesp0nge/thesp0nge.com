@@ -1,13 +1,20 @@
-source 'http://rubygems.org'
+source "http://rubygems.org"
 
-gem 'nanoc', '< 3.2.x'
-gem 'nanoc3', '< 3.2.x'
+gem 'active_support'
+#gem 'i18n'
 
-gem 'rake'
-gem 'builder'
+# Base and helpers
+gem 'nanoc'
+gem 'htmlentities'
+
+# Markup and stylesheets
 gem 'haml'
-gem 'nokogiri'
-gem 'coderay'
-gem 'multi_json'
-gem 'activesupport'
-gem 'i18n'
+gem 'sass'
+gem 'compass'
+gem 'compass_twitter_bootstrap'
+
+gem 'builder'
+
+# Development rack server
+gem 'rack'
+gem 'rack-rewrite', :require => 'rack/rewrite'

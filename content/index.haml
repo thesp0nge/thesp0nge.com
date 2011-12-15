@@ -1,59 +1,52 @@
 ---
-title: Paolo Perego - secure software craftsman
+title: Home 
+kind: page
 ---
-%article#about
-  %header
-    &nbsp;
-  %section
-    %p
-      Ciao e benvenuto su 
-      %strong
-        %em
-          thesp0nge.com. 
-      Questo è il mio sito personale. Qui dove parlo di application security,
-      ruby on rails, objective-c, sviluppo per mac e iphone, di startup, di
-      metodologie come bdd, tdd e gtd e tutto quanto può aiutare a lavorare
-      meglio. 
-      %br
-      A volte parlo anche di me, di musica, di taekwondo, di mia moglie e mio
-      figlio ed in generale di quello che mi fa battere il cuore.
-  %footer
-    %hr
 
-- oldest_item = nil
-- current_index = 0
+//  I love http://twitter.github.com/bootstrap/examples/hero.html layout. That's
+//  why I'm going to have a fixed "Welcome" box in the homepage and up to
+//  featured_count articles horizontally aligned.
+//  That's why I think I'm going to hack a bit sorted_article array in order to
+//  take not the blog posts but articles instead.
 
-- sorted_articles[current_index, featured_count].each do |item|
-  - oldest_item = item
-  - current_index += 1
-  %article{:class=>"featured"}
-    - item[:featured] = true
-    = render('_article', :item => item, :is_embedded=> true, :show_lang=>true)
+.hero-unit
+  %h1
+    Welcome to thesp0nge.com
+  %p
+    Hi, my name is Paolo and I'm an application security expert from Milan,
+    Italy. This is my blog where I talk about application security, ruby on
+    rails, objective-c, software development, startups, behaviour driven
+    development, test driven develoment and getting things done.
+  %p
+    Sometimes I talk about myself, about music, taekwondo itf, my family and
+    all the stuff that make my life a grate place to be.
+  %p
+    %a.btn.primary.large{:href=>'/about.html'}
+      Read more
 
-#post_list_box
-  %h2#post_list_title
-    Ultimi post
-  %ul#post_list
-    -sorted_articles[current_index, excerpt_count].each do |post|
-      %li
-        %article.index
-          %header
-            %a{:href=>"#{route_path(post)}", :title=>"Full article"}
-              %h3
-                = post[:title]
-            %h4
-              %time
-                = pretty_time(post[:created_at])
-            .clearfix
-            = render('_meta', :item=>post, :disable_reaction=>true, :show_lang=>true)
-          .clearfix
-          %section
-            %p
-              =post[:excerpt]
-          %footer
-            %a{:href=>"#{route_path(post)}", :title=>"Full article"}
-              %span.read_more
-                Leggi tutto &raquo;
-            %hr
-%hr
+.row
+
+  - oldest_item = nil
+  - current_index = 0
+
+  - sorted_articles[current_index, featured_count].each do |item|
+    - oldest_item = item
+    - current_index += 1
+    .span5
+      %h2
+        =item[:title]
+      .meta
+        =flag_image(item[:lang])
+        =pretty_time(item[:created_at])
+      %p
+        =item[:excerpt]
+      %p
+        %a.btn{:href=>item.path}
+          Read more &raquo;
+.row
+  %a.btn.primary.large{:href=>'/posts.html'}
+    All posts
+
+/  = render('_article', :item => item, :is_embedded=> true, :show_lang=>true, :featured=>true)
+
 
