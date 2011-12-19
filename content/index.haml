@@ -9,7 +9,7 @@ kind: page
   %h1
     =featured[:title]
   = render('_meta', :item => featured)
-  %span.important
+  %span.label.important
     featured
   %p
     =featured[:excerpt]
@@ -17,22 +17,49 @@ kind: page
     %a.btn.primary.large{:href=>featured.path}
       Read more &raquo;
 
-.row
+- rows = (featured_count - 1) % 3
+- i=-1
 
-  - oldest_item = nil
-  - current_index = 1
+- (0..rows-1).each do |r|
+  -i+=1
+  .row
+    - item0 = sorted_articles[1+(i*3)]
+    - item1 = sorted_articles[1+(1+(i*3))]
+    - item2 = sorted_articles[1+(2+(i*3))]
 
-  - sorted_articles[current_index, featured_count].each do |item|
-    - oldest_item = item
-    - current_index += 1
+
+    .span6
+      %h2
+        =item0[:title]
+      .meta
+        =flag_image(item0[:lang])
+        =pretty_time(item0[:created_at])
+      %p
+        =item0[:excerpt]
+      %p
+        %a.btn{:href=>item0.path}
+          Read more &raquo;
+
     .span5
       %h2
-        =shorten(item[:title], 30)
+        =item1[:title]
       .meta
-        =flag_image(item[:lang])
-        =pretty_time(item[:created_at])
+        =flag_image(item1[:lang])
+        =pretty_time(item1[:created_at])
       %p
-        =item[:excerpt]
+        =item1[:excerpt]
+      %p
+        %a.btn{:href=>item1.path}
+          Read more &raquo;
+
+    .span5
+      %h2
+        =item2[:title]
+      .meta
+        =flag_image(item2[:lang])
+        =pretty_time(item2[:created_at])
+      %p
+        =item2[:excerpt]
       %p
         %a.btn{:href=>item.path}
           Read more &raquo;
