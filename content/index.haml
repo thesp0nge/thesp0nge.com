@@ -3,25 +3,24 @@ title: Home
 kind: page
 ---
 
+- featured=sorted_articles[0]
+
 .hero-unit
   %h1
-    Welcome to thesp0nge.com
+    =featured[:title]
+  = render('_meta', :item => featured)
+  %span.important
+    featured
   %p
-    Hi, my name is Paolo and I'm an application security expert from Milan,
-    Italy. This is my blog where I talk about application security, ruby on
-    rails, objective-c, software development, startups, behaviour driven
-    development, test driven develoment and getting things done.
+    =featured[:excerpt]
   %p
-    Sometimes I talk about myself, about music, taekwondo itf, my family and
-    all the stuff that make my life a grate place to be.
-  %p
-    %a.btn.primary.large{:href=>'/about.html'}
-      Read more
+    %a.btn.primary.large{:href=>featured.path}
+      Read more &raquo;
 
 .row
 
   - oldest_item = nil
-  - current_index = 0
+  - current_index = 1
 
   - sorted_articles[current_index, featured_count].each do |item|
     - oldest_item = item
