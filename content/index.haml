@@ -34,7 +34,7 @@ kind: page
     - current_index += 1
     .span5
       %h2
-        =item[:title]
+        =shorten(item[:title], 30)
       .meta
         =flag_image(item[:lang])
         =pretty_time(item[:created_at])

@@ -33,3 +33,14 @@ def flag_image(lang)
     "<img src='/images/en.png' />" 
   end
 end
+
+def shorten(string, len=30)
+  if (string.length >= len)
+    shortened=string[0, len]
+    splitted=shortened.split(/\s/)
+    words=splitted.length
+    splitted[0, words-1].join(" ") + '...'
+  else
+    string
+  end
+end
