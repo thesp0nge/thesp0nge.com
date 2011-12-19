@@ -1,7 +1,7 @@
 source "http://rubygems.org"
 
 gem 'active_support'
-#gem 'i18n'
+gem 'i18n'
 
 # Base and helpers
 gem 'nanoc'

@@ -51,7 +51,7 @@ TEMPLATE
     require 'active_support/core_ext'
     require 'active_support/multibyte'
     @ymd = Time.now.to_s(:db).split(' ')[0]
-    if !ENV['name']
+    if !ENV['title']
       $stderr.puts "\t[error] Missing title argument.\n\tusage: rake create:page title='A great article title'"
       exit 1
     end
