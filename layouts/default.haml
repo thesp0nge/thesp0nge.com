@@ -52,8 +52,12 @@
 
       .row
         %footer
-          .span11
+          .span6
             &copy; #{Time.now.year} - #{site_name}
+          .span3
+            v#{version[:string]}
+          .span2
+            %img{:src=>'/images/cc.png'}
           .span2
             %a{:href=>'http://twitter.com/thesp0nge'}
               %img{:src=>'/images/twitter.png'}

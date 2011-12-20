@@ -57,7 +57,7 @@ TEMPLATE
     end
 
     title = ENV['title'].capitalize
-    path, filename, full_path = calc_path(title, true)
+    path, filename, full_path = calc_path(title, false)
 
     if File.exists?(full_path)
       $stderr.puts "\t[error] Exists #{full_path}"
@@ -71,7 +71,7 @@ kind: article
 publish: true
 lang: [it]
 tags: [misc]
-name: "#{name.capitalize}"
+title: "#{title.capitalize}"
 url: 
 place: 
 ---

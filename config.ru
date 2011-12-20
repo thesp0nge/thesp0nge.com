@@ -1,4 +1,5 @@
 require 'bundler/setup'
+require 'i18n'
 Bundler.require
 
 use Rack::Rewrite do
