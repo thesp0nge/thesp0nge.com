@@ -5,8 +5,9 @@ body {
   background-repeat: repeat-x;
 
   text-align: justify; 
-  font-family: Georgia, Cambria, Copse, serif;
+  font-family: 'Gentium Basic', Georgia, Cambria, Copse, serif;
 }
+/*font-family: 'Yanone Kaffeesatz', sans-serif;*/
 
 a, a:visited { 
   color: #741012;
