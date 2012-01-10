@@ -8,6 +8,8 @@ data_sources:
   - items_root: /
     type: filesystem_unified
     layouts_root: /
+    config:
+      encoding: utf-8
 
 deploy:
   default:
