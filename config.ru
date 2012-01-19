@@ -1,17 +1,25 @@
 require 'bundler/setup'
-require 'i18n'
-Bundler.require
+require 'sinatra/base'
 
-use Rack::Rewrite do
-  r301 %r{^([^\.]*[^\/])$}, '$1/' 
-  r301 %r{^(.*\/)$}, '$1index.html'
+# The project root directory
+$root = ::File.dirname(__FILE__)
+
+class SinatraStaticServer < Sinatra::Base  
+
+  get(/.+/) do
+    send_sinatra_file(request.path) {404}
+  end
+
+  not_found do
+    send_sinatra_file('404.html') {"Sorry, I cannot find #{request.path}"}
+  end
+
+  def send_sinatra_file(path, &missing_file_block)
+    file_path = File.join(File.dirname(__FILE__), 'public',  path)
+    file_path = File.join(file_path, 'index.html') unless file_path =~ /\.[a-z]+$/i  
+    File.exist?(file_path) ? send_file(file_path) : missing_file_block.call
+  end
+
 end
 
-use Rack::Static, :urls => ["/"], :root => Dir.pwd + '/output'
-
-class NanocRack
-  def call(env)
-    [200, {"Content-Type" => "text/html"}, ["Ooops. This shouldn't happen."] ]
-  end  
-end
-run NanocRack.new
+run SinatraStaticServer

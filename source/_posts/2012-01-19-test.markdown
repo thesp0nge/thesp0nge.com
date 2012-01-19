@@ -1,0 +1,20 @@
+---
+layout: post
+title: "test"
+date: 2012-01-19 08:29
+comments: true
+categories: test, stuff, antani
+---
+## This is a title test?
+
+So am I allowed to put some lorem ipsun here and see it _postified_?
+
+1. a
+2. b
+
+Testing lists here:
+
+- a
+- b
+
+' dd

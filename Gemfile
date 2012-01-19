@@ -1,21 +1,18 @@
 source "http://rubygems.org"
 
-gem 'active_support'
-gem 'i18n'
-gem 'mime-types'
+group :development do
+  gem 'rake'
+  gem 'rack'
+  gem 'jekyll'
+  gem 'rdiscount'
+  gem 'pygments.rb'
+  gem 'RedCloth'
+  gem 'haml', '>= 3.1'
+  gem 'compass', '>= 0.11'
+  gem 'rubypants'
+  gem 'rb-fsevent'
+  gem 'stringex'
+  gem 'liquid', '2.2.2'
+end
 
-# Base and helpers
-gem 'nanoc'
-gem 'htmlentities'
-
-# Markup and stylesheets
-gem 'haml'
-gem 'sass'
-gem 'compass'
-gem 'compass_twitter_bootstrap'
-
-gem 'builder'
-
-# Development rack server
-gem 'rack'
-gem 'rack-rewrite', :require => 'rack/rewrite'
+gem 'sinatra', '1.2.6'

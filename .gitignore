@@ -1,3 +1,5 @@
+.preview-mode
+public
 .sass-cache
 output/*
 outbox/*
