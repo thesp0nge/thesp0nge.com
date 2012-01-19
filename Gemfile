@@ -2,6 +2,7 @@ source "http://rubygems.org"
 
 gem 'active_support'
 gem 'i18n'
+gem 'mime-types'
 
 # Base and helpers
 gem 'nanoc'
