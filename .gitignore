@@ -1,5 +1,5 @@
 .preview-mode
-public
+public/*
 .sass-cache
 output/*
 outbox/*
