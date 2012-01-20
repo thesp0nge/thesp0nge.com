@@ -1,0 +1,78 @@
+---
+created_at: 2011-04-20
+excerpt: Un blog è un contenitore di pensieri... serve molto più di qualche pagina HTML ed un po' di javascript per crearne uno? No, ecco come.
+kind: article
+publish: true
+lang: [it]
+tags: [how-to, ruby, nanoc]
+title: "Serve codice server side per un blog? Parte 1"
+place: Gessate
+---
+%p
+  E' considerazione diffusa che blog sia sinonimo di 
+  %a{:href=>'http://www.wordpress.org'} wordpress 
+  e quindi serva un'installazione LAMP classica per ospitare i nostri pensieri in libertà.
+%p
+  Sicuramente wordpress è un gran software, tuttavia possiamo avere il nostro
+  blog con molte meno richieste hardware e con uno stile molto
+  %em
+    hackish.
+  %br
+  Ecco come.
+  %br
+  Ci serve: 
+  %ul
+    %li un server dove pubblicare un po' di HTML, del CSS, JS, per le immagini possiamo usare servizi come 
+    %a{:href=>'http://www.flickr.com'}flickr.com
+    oppure
+    %a{:href=>'http://picasa.google.com'}picasa.
+    %li un editor di testo
+    %li un ambiente ruby funzionante.
+    %li un account su 
+    %a{:href=>'http://www.disqus.com'}disqus.com
+    per gestire i commenti.
+
+%p
+  Per prima cosa installiamo 
+  %code
+    nanoc
+  con il omando
+  %code
+    gem install nanoc
+  (se non avete installato rvm e quindi tutte le vostre gemme vengono installate system-wide dovrete usare sudo)
+  %br
+  A questo punto generiamo il nostro blog, con il comando:
+  %code 
+    nanoc create_site mysite.
+  nanoc ha creato per noi la directory
+  %em 
+    my_site
+  ed al suo interno le directory:
+  %ul
+    %li content - per contenere i post
+    %li layouts - per contenere i layout per la parte di visualizzazione.
+  %br
+%p
+  nanoc crea anche un minimo di configurazione standard per iniziare subito ad essere produttivi:
+  %ul
+    %li config.yaml - contenente la configurazione per il nostro nuovo blog
+    %li Rules - contiene le regole che dicono a nanoc come deve gestire i file all'interno della directory content, quali filtri applicare e soprattutto come impostare i link delle pagine quando saranno online
+    %li Rakefile - familiare per chi scrive progetti complessi usando ruby, qui andremo a mettere tutti i task specifici per le nostre esigenze.
+%p
+  Apriamo con il nostro editor il file
+  %code
+    content/index.html
+  e scriviamo qualcosa, anche il semplice 'Hello world!' può andare bene. Salviamo e torniamo alla nostra shell.
+%p
+  Chiediamo a nanoc di compilare il sito e di lanciare il web server (mongrel di default) in ascolto sulla porta 3000 per vedere il risultato dei nostri sforzi.
+  %code
+    nanoc co && nanoc view
+%p
+  Apriamo il nostro browser all'indirizzo
+  %code
+    http://localhost:3000
+  ed ecco il nostro messaggio compare nella pagina principale del nostro blog.
+%p
+  Nella prossima puntata vedremo come aggiungere un task per creare un nuovo articolo e come configurare il file delle regole per usare haml per il markup dei nostri post e per avere delle url semantiche per il nostro blog.
+%p
+  Stay tuned

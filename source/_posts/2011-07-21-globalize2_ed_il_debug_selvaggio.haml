@@ -1,0 +1,66 @@
+---
+created_at: 2011-07-21 09:04:18 +0200
+excerpt: A volte la soluzione più ovvia ai problemi di debug del codice è anche quella corretta. Vediamo come globalize2 non gradisce istruzioni su più righe...
+kind: article
+publish: true
+lang: [it]
+tags: [ruby, rails, i18n, internationalization, globalize2, ruby gem, debug]
+title: "Globalize2 ed il debug selvaggio"
+place: Gessate
+---
+
+%p
+  Ieri sul CMS per un cliente nel settore fashion e moda stavo aggiungengo un
+  attributo ad un modello, attributo che andava tradotto nei 
+  %em
+    locale
+  presenti sul CMS.
+%p
+  Per il progetto in questione, stiamo usando ancora Rails2 e 
+  %a{:href=>'https://github.com/joshmh/globalize2'}
+    globalize2
+  per la gestione delle traduzioni.
+%p
+  Creo la migrazione per aggiungere il campo nella tabella delle traduzioni per
+  quel modello ed aggiungo anche la riga che avvisa rails che si tratta di un
+  attributo tradotto. In soldoni il mio modello appariva così:
+  %pre
+    %code{:class=>'language-ruby coderay'}
+      :escaped
+        class MyVeryI18nModel < ActiveRecord::Base
+          before_save :make_seo_filenames
+
+          translates :title, :table_name => 'table_name_here'
+          translates :description, :table_name => 'table_name_here'
+%p
+  %em
+    Esplode tutto.
+%p
+  Rails non vede il mio attributo 
+  %em
+    description
+  che è al suo posto, che è valorizzato correttamente, che è presente nella
+  tabella delle traduzioni.
+%p
+  Dopo un po' chiamo il mio amichetto Paolo e gli domando luce sull'arcano. 
+  %em
+    Prova a mettere i translates sulla stessa riga
+  mi fa.
+  %br
+  Ebbene, funziona tutto.
+  %br
+  Il succo della storia è, 
+  %a{:href=>'https://github.com/joshmh/globalize2'}
+    globalize2
+  vuole che ci sia un'unica dichiarazione translates con gli attributi coinvolti.
+%p
+  Quindi, non fate l'errore da newbie che ho fatto io... il modello deve essere scritto così:
+  %pre
+    %code{:class=>'language-ruby coderay'}
+      :escaped
+        class MyVeryI18nModel < ActiveRecord::Base
+          before_save :make_seo_filenames
+
+          translates :title, :description :table_name => 'table_name_here'
+%p
+  Grazie Paolo!

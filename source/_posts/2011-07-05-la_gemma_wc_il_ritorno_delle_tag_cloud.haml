@@ -1,0 +1,89 @@
+---
+created_at: 2011-07-05 10:20:44 +0200
+excerpt: wc è la gemma alla base di nuvola, il mio generatore di tag cloud che sta per compiere un anno. Per festeggiare ho iniziato un radicale refactoring...
+kind: article
+publish: true
+lang: [it]
+tags: [ruby, ruby on rails, nuvola, armoredcode]
+title: "La gemma wc: il ritorno delle tag cloud"
+place: Gessate
+---
+
+%p
+  L'anno scorso avevo un sogno. Partire con il blog di armoredcode, creare hype
+  attorno a me, fare startup non avendo ancora bene in mente come, avere più
+  tempo per la mia famiglia.
+  %br
+  Tutto questo partendo da
+  %a{:href=>'http://nuvola.armoredcode.com'}
+    nuvola
+  il mio generatore di tag cloud.
+
+%p 
+  Quanta innocenza nei miei sogni di 34enne vero? :-)
+%p
+  Bene, ora che sono 35enne e sono una persona matura ho capito che nuvola è
+  solo un gioco, ma per quanto gioco voglio dargli un bell'aspetto. Soprattutto
+  perché sembra che alcuni dubitino sappia mettere assieme del codice
+  funzionante.
+  %em
+    Birichini
+  vi dimostrerò il contrario. 
+%p
+  L'idea dietro nuvola era, ed è semplice. Partendo da un testo, creare una tag
+  cloud ma dando all'utente il codice html in modo che possa customizzarla come
+  più gli aggrada. Niente di ecclatante. Un gioco appunto.
+%p
+  Adesso che dopo un anno ho imparato qualcosa in più di Rails, farò in modo che tramite 
+  %a{:href=>'https://github.com/plataformatec/devise'}
+    devise 
+  e 
+  %a{:href=>'https://github.com/intridea/omniauth'}
+    omniauth
+  gli utenti si autentichino e si colleghino ai propri social network
+  eventualmente facendo SSO su nuvola.
+  %br
+  Sicuramente seguirò la richiesta del mio amico 
+  %a{:href=>'http://www.psd2web.it/'}
+    Stefano
+  che mi disse sarebbe stato fico poter far crescere le nuvole aggiungendo testo a runtime.
+%p
+  Sono partito però dalle basi... dalla gemma 
+  %a{:href=>'https://rubygems.org/gems/wc'}
+    wc
+  che ho iniziato a scrivere l'anno scorso.
+  %br
+  Rivedendo il codice ho avuto un sussulto di terrore. Oltre ad essere brutto
+  stilisticamente, era orripilante anche come APIs. Di fatto mi costringeva a
+  salvare in un file temporaneo quanto inserito dall'utente per poi calcolare
+  le occorrenze delle parole.
+%p
+  Visto che sono in giro coi 
+  %a{:href=>'http://thesp0nge.com/2011/07/01/vita_senza_freni.html'}
+    mezzi pubblici
+  ieri durante il tragitto in metropolitana l'ho completamente riscritta. Ora
+  estende la classe String con un metodo to_tag_cloud che fa il suo porco
+  lavoro.
+%p
+  Ora l'utilizzo dell'API è veramente molto semplice. Dopo aver installato la 
+  %a{:href=>'https://rubygems.org/gems/wc'}
+    versione 0.99 
+  o le successive quando ci saranno, potrete creare una tag cloud direttamente
+  dal vostro oggetto String.:
+  %pre
+    %code{:class=>'language-ruby coderay'}
+      :escaped
+        require 'wc'
+
+        puts "This is a very huge string".to_tag_cloud
+%p
+  Ok, non ho inventato la cura contro il cancro, però mi sembra un gran passo
+  in avanti. Soprattutto se devo integrare la mia piccola gemma in nuvola.
+%p
+  Ho deciso di rilaciare open sia nuvola che porkatpark.com quando ci sarà,
+  mentre pernataleiovorrei.com resterà chiuso assieme a codesake.com
+%p
+  Tante novità si stagliano all'orizzonte, per ora... buon compleanno
+  %a{:href=>'http://nuvola.armoredcode.com'}
+    nuvola.
+

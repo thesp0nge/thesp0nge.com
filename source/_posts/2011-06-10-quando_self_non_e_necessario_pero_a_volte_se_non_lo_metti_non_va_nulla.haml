@@ -1,0 +1,51 @@
+---
+created_at: 2011-06-10
+excerpt: L'utilizzo di self nei modelli spesso è indicato come superfluo in quanto si da per scontato che ci si stia riferendo all'oggetto corrente... ecco, non è sempre così.
+kind: article
+publish: true
+lang: [it]
+tags: [ruby, tdd, model]
+title: "Quando self non è necessario però a volte se non lo metti non va nulla"
+place: Gessate
+---
+
+%p
+  Sto creando un modello, per un'applicazione che stiamo sviluppando usando un
+  bell'esempio di backport delle tecnologie di Rails 3.1 in Rails 3.0. Il
+  bell'esempio di backport è tutta farina di 
+  %a{:href=>'http://www.parmi.it/'}
+    Matteo
+%p
+  Nel creare il mio modello, ho bisogno che alcuni campi di testo vengano
+  compilati in automatico prima del salvataggio. Creo il metodo e lo imposto
+  come callback per il filtro 
+  %a{:href=>'http://api.rubyonrails.org/classes/ActiveRecord/Callbacks.html'}
+    before_save.
+%p
+  Non va. Il callback viene chiamato ma i campi restano a nil.
+%p
+  Impazzisco un po', mi affido ad rspec e provo a scrivere qualche test per
+  vedere se il problema stava altrove nella mia app.
+%p
+  Impazzisco ancora un po', cerco su 
+  %a{:href=>'http://stackoverflow.com'}
+    stackoverflow
+  ma sembra che questa volta abbia creato una singolarità nel mondo dello
+  sviluppo software.
+%p
+  Alla fine, dopo un pieno di pazzia, ho risolto. Perché se non dico
+  esplicitamente che voglio che siano i campi dell'oggetto self, il modello non
+  mi fa l'assegnazione prima del salvataggio.
+  %pre
+    %code{:class=>'language-ruby coderay'}
+      :escaped
+        def slugify
+          self.slug_en = name_en.parameterize 
+          self.slug_it = name_it.parameterize 
+        end
+%p
+  Ora, se io mi trovo nel modello, il self dovrebbe essere superfluo in quanto
+  è scontato che io non voglia creare una nuova variabile che ha lo stesso nome
+  del mio campo.
+  %br
+  In realtà... il self non è superfluo in questo caso.

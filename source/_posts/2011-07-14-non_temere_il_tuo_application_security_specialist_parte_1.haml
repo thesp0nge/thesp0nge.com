@@ -1,0 +1,141 @@
+---
+created_at: 2011-07-14 15:48:25 +0200
+excerpt: Le fasi di assessment di sicurezza sono viste spesso come una forzatura del normale ciclo di vita del software. Conosciamo il "nemico" per capire che in realtà lavora per noi...
+kind: article
+publish: true
+lang: [it]
+tags: [appsec, application security, simple life, owasp, penetration test, h4f]
+title: "Non temere il tuo application security specialisti. Parte 1"
+place: Gessate
+---
+
+%p
+  Si solito sono due comparti separati: 
+  %em
+    it/sviluppo
+  e
+  %em
+    sicurezza.
+  Quest'ultima comprende, di solito, anche tutta la parte di sicurezza fisica e
+  compliance alle normative. Quasi normale che quando si trovino a dover
+  lavorare insieme, nel momento di verifica degli applicativi (o
+  dell'infrastruttura di rete) si guardino con sospetto.
+%p
+  L'IT manager a capo degli sviluppatori pensa che chi fa il penetration test
+  all'applicazione di sua competenza sia fondamentalmente un rompiscatole il
+  cui unico scopo è rallentare l'online della stessa.
+%p
+  Il Security Manager invece spesso considera gli sviluppatori come dei
+  generatori pseudo casuali di bug ed è sua l'onere di redimere tanta entropia
+  entro i limiti di un software robusto.
+%p
+  Ok, un po' l'ho romanzata per rendere piacevole la lettura, vediamo di capire
+  cosa vuol dire fare un penetration test su un'applicazione, vediamo di capire
+  assieme quando è meglio farlo e soprattutto quali accortezze prendere.
+  %br
+  Entrambi i team si accorgeranno che dicono la stessa cosa in due modi differenti: 
+  %em
+    voglio mettere online un'applicazione di qualità.
+%h2
+  Quando organizzare un penetration test applicativo?
+%p
+  Dopo la messa in esercizio? Diciamo... in un ambiente ideale la risposta è 
+  %em
+    assolutamente no.
+  %br 
+  Anche se non siamo in un ambiente ideale, tuttavia fare un penetration test
+  dopo l'online magari sugli stessi ambienti di produzione è una pratica da
+  deprecare.
+%p
+  Un penetration test andrebbe condotto a valle di tutti i test di
+  integrazione, appena prima dell'online. L'ideale sarebbe avere
+  un'architettura di 
+  %em
+    staging
+  dove ospitare l'applicativo e dei dati reali, magari volutamente non
+  aggiornati se avete policy particolari per gli ambienti di test, in maniera
+  tale che chi opera il test sia in un ambiente il più simile possibile alla
+  produzione.
+%h2
+  Pronti via. Cosa mi serve?
+%p
+  Ok, adesso io inizio a fare un pentest su 
+  %a{:href=>'http://thesp0nge.com'}
+    thesp0nge.com
+  e ve lo racconto. 
+%p
+  Prima di tutto, per evitare qualche noia con la legge, accertiamoci di avere
+  un'autorizzazione firmata dal nostro cliente che ci dia l'ok per l'avvio
+  delle attività, che delimiti il perimetro dell'attività e che indichi le
+  fasce orarie dove sono autorizzato a mettere a ferro e fuoco il server.
+  %br
+  Perché queste accortezze? Bhé non nascondiamoci dietro false sicurezze. Un
+  penetration test è una simulazione di un attacco informatico e, nonostante la
+  perizia di chi lo fa, nonostante tutte le precauzioni che si possono
+  prendere, l'operatività dell'applicazione potrebbe essere compromessa.
+  %br
+  Va giù il server, va giù l'applicazione, serve un riavvio... meglio avere le
+  spalle coperte da un cliente infuriato no?
+%p
+  In 7 anni di pentest, comunque ho buttato giù un'applicazione che stavo
+  testando solo 2 volte ed erano entrambe scritte con le prime versioni di .NET
+  quindi parlavamo di codice non più attivamente mantenuto e probabilmente a
+  cui hanno partecipato più fornitori visto il patchwork che ne risultò.
+%h2
+  Cosa spero di trovare? (ovvero, perché devo fare un penetration test?)
+%p
+  Prima di lasciarvi e darvi appuntamento prossimamente con la seconda parte,
+  dove parleremo di come cercare i buchi più grossolani (senza scendere nel
+  dettaglio per evitare di passare come una delle tante scuole dove ti
+  insegnano a bucare i siti web) e soprattutto di come approcciare il momento
+  della condivisione dei risultati, parliamo delle cose che spero di trovare
+  con un penetration test.
+%p
+  Tralasciamo il fatto che probabilmente l'ordine imperativo di fare
+  un'attività di test è arrivato dall'alto, un penetration test ha uno scopo
+  preciso:
+  %em
+    mostrare la reazione di un sistema informativo di fronte ad un attacco
+    informatico volto principalmente a carpire i dati del cliente, sovvertire
+    il comportamento dell'applicativo per ottenere un vantaggio o bloccare
+    l'operatività dello stesso causando un danno economico. 
+%p
+  Al termine dell'attività io avrò un indicatore del livello di sicurezza del
+  mio codice che mi indica cosa può fare un attaccante. Avrò una lista di
+  problemi da sottoporre al mio cliente, con delle indicazioni di massima sulle
+  contromisure. Il solo penetration test non è in grado tuttavia di farmi dire
+  dove a livello di codice sorgente occorre andare ad intervenire.
+  %br
+  Supponiamo, ad esempio, che io trovi un XSS su una pagina. Potrò dire al mio
+  cliente qual è il 
+  %em
+    sintomo
+  ovvero dirò "questa pagina è vulnerabile a XSS".
+  %br
+  Non potrò invece dire con certezza come rimediare. Il dato incriminato
+  potrebbe essere memorizzato su database, potrebbe essere letto nella stessa
+  pagina come all'inizio del workflow di navigazione. Guardando il codice come
+  una blackbox non posso fare altro che dire "dovresti sanitizzare quel dato",
+  non posso andare oltre.
+%p
+  Combinando il penetration test con una code review, parte 3 di questa serie
+  "Non temere il tuo application security specialist", saremo in grado di dare
+  una diagnosi completa al nostro cliente, andando ad evidenziare la causa
+  principale dei problemi di sicurezza indicando in maniera puntuale come
+  intervenire.
+%h2
+  Verificare non è puntare il dito
+%p
+  Chiudo la prima parte con una riflessione. Siamo abituati da quando andiamo a
+  scuola a vedere chi verifica il nostro lavoro come qualcuno che punta il
+  dito. E questo in certi casi è vero.
+  %br
+  L'attività di penetration test e code review è fatta però nel solo interesse
+  verso l'azienda di salvaguardare il proprio core business (i dati aziendali
+  dei propri clienti ad esempio) ed il rapporto di fiducia instaurato con essi
+  (che si sono affidati alla piattaforma del cliente per memorizzare i propri
+  dati).
+%p
+  Il rapporto tra application security specialist e committente deve essere il
+  più improntato alla cooperazione possibile. E' un rapporto alla pari dove
+  vengono dati spunti su come elevare il livello di sicurezza del codice.

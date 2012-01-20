@@ -1,0 +1,77 @@
+---
+created_at: 2011-07-08 12:27:28 +0200
+excerpt: Ieri abbiamo visto come sia pericoloso memorizzare dati sensibili in chiaro sul nostro database, oggi vediamo come mettere a posto le cose.
+kind: article
+publish: true
+lang: [it]
+tags: [application security, xss, owasp, owasp top 10, appsec, cross, hacking, ruby, rails, sinatra, hf4]
+title: "Insecure cryptographic storage: strategie di difesa"
+place: Gessate
+---
+
+%p
+  %a{:href=>'/2011/07/07/le_universita_italiane_e_l_insecure_cryptographic_storage.html'}
+    Ieri
+  parlavamo del 
+  %em
+    break in
+  di un sedicente gruppo hacker in 18 atenei italiani e della magra figura
+  degli stessi di fronte a dati sensibili memorizzati in chiaro sul database.
+%p
+  Come se non bastasse, il 
+  %a{:href=>'http://www.garanteprivacy.it/garante/doc.jsp?ID=1557184'}
+    Codice in materia di protezione dei dati personali
+  , con l’allegato B al D. Lgs. n.196, obbliga le aziende e gli studi
+  professionali - e tutti quei soggetti che trattano dati personali attraverso
+  sistemi informatici - a redigere il tanto discusso Documento Programmatico
+  sulla Sicurezza.
+%p
+  In tale documento, da aggiornare ogni anno, come ben noto vengono elencate
+  tutte le misure minime adottate in azienda per proteggere i dati sensibili
+  custoditi da eventuali accessi non autorizzati, possibili furti, perdite di
+  dati, ecc.
+%p 
+  Come al solito mi rifarò a Rails per l'esempio pratico, ma ecco la teoria
+  alla base, così chiunque può adattarla al proprio codice.
+%p
+  Il compito di memorizzare un dato in forma offuscata, in un'architettura MVC
+  è chiaramente del Model, potremmo quindi usare i 
+  %a{:href=>'http://api.rubyonrails.org/classes/ActiveRecord/Callbacks.html'}
+    callback
+  di ActiveRecord e definire una routine da chiamare al 
+  %em
+    before_save
+  in modo da garantire il salvataggio del dato in maniera offuscata.
+  %pre
+    %code{:class=>'language-ruby coderay'}
+      :escaped
+        before_save :secure_your_data
+
+        def secure_your_data(plain_text)
+          self.password_salt = [Array.new(6){rand(256).chr}.join].pack("m").chomp
+          self.password_sha  = self.encrypt_password(plain_text)
+        end
+ 
+        def encrypt_password(cleartext)
+          Digest::SHA256.hexdigest(cleartext + self.password_salt)
+        end
+      
+%p
+  Sì la scelta per un algoritmo di hashing che sia forte criptonaliticamente è SHA256. Sia 
+  %a{:href=>'http://www.rsa.com/rsalabs/node.asp?id=2927'}
+    SHA1 
+  che 
+  %a{:href=>'http://en.wikipedia.org/wiki/MD5'}
+    MD5 
+  hanno sofferto in passato di collisioni e per tanto non sono da considerarsi
+  forti dal punto di vista crittografico.
+%p
+  Il suggerimento più sensato è comunque... non affidatevi al DYI in campo di
+  memorizzazione e gestione degli account. Usare una libreria opensource che
+  abbia un buon feedback nella community permette di utilizzare codice
+  ampiamente testato e che viene messo in produzione in talmente tanti ambiti
+  che una vulnerabilità, laddove scoperta, viene di solito chiusa in giornata.
+%p
+  Nel caso di Rails, la scelta è pressochè obbligata e diretta verso 
+  %a{:href=>'https://github.com/plataformatec/devise'}
+    devise.

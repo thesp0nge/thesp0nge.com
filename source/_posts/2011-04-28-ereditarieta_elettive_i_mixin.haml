@@ -1,0 +1,134 @@
+---
+created_at: 2011-04-28
+excerpt: Ruby non supporta l'ereditarietà multipla, tuttavia i Mixin sono un compromesso potente per creare una gerarchia di classi.
+kind: article
+publish: true
+lang: [it]
+tags: [how-to, ruby, teoria]
+title: "Ereditarietà elettive: i mixin"
+place: Gessate
+---
+
+%p
+  Oggi mi è stato chiesto perché mi piacesse 
+  %a{:href=>'http://ruby-lang.org'}ruby.
+  Mi sono accorto, rispondendo, che era qualcosa di più che il profumo hackish
+  che gravita attorno alla mia finestra di 
+  %a{:href=>'http://www.vim.org'}vim.
+%p
+  Buona parte dell'hype che mi sta legato al linguaggio in questi anni è
+  chiaramente legata ai framework per lo sviluppo web. Dal punto di vista dello
+  sviluppatore sono una manna dal cielo perché permettono
+  %strong
+    veramente
+  di essere produttivi in pochissimo tempo, abbattendo di fatto la curva di
+  apprendimento. Permettono di scrivere solo il codice legato alla nostra
+  business logic in quanto vigono una serie di comportamenti di default dettati
+  dalle convenzioni sulla naming convention e sul design dei framework stessi
+  (discorso questo che vale tanto per Rails quanto per Sinatra e Padrino di cui
+  ormai avrete capito... sono un fanboy).
+%p
+  Oggi però non parleremo di programmazione lato web ma di un aspetto su cui mi
+  hanno fatto riflettere ieri e legato ai meccanismi di ereditarierà di ruby.
+  %br
+  A differenza di c++, ruby non supporta le ereditarietà multiple, questo
+  significa che una dichiarazione di classe come la seguente è totalmente
+  errata.
+  %pre
+    %code{:class=>'language-ruby coderay'}
+      :escaped
+          def Scooter < Item, Veicolo
+          # do stuff
+        end
+%p
+  In passato mi sono trovato a superare il problema dell'ereditarietà singola
+  in java, ad esempio utilizzando interfaccie ed attraverso una gerarchia a
+  volte complessa di classi che si estendono a vicenda.
+  %br
+  Ora che devo sviluppare 
+  %a{:href=>'http://mirage.armoredcode.com'}mirage
+  come posso estendere una classe in maniera tale che peschi dai miei parser,
+  ad esempio, ma anche dalle mie routine di logging custom che ho messo in un
+  namespace opportuno?
+  %br
+  Utilizzando i 
+  %strong 
+    mixin.
+%p
+  Utilizzare i mixin in ruby significa organizzare il proprio codice in maniera
+  opportuna attraverso i moduli. I moduli sono un sistema simile alle classi
+  per organizzare il proprio codice raggruppandolo per funzionalità fornendo un
+  namespace consistente. Condizione 
+  %em
+    sine qua non
+  quando si deve sviluppare un'API che verrà utilizzata da altri, ad esempio.
+  %br
+  Riprendendo il nostro esempio della classe Scooter a cui vogliamo dare metodi
+  specifici per i veicoli commerciali e per degli 
+  %em
+    item
+  di un'ipotetica applicazione di ecommerce, utilizziamo i moduli per
+  descrivere i veicoli e gli item.
+  %pre
+    %code{:class=>'language-ruby coderay'}
+      :escaped
+          module Item
+          def cost=(price)
+            @my_price=price
+          end
+          def cost
+            @my_price
+          end
+      end
+  %pre
+    %code{:class=>'language-ruby coderay'}
+      :escaped
+          module Veicolo
+          def wheels=(wheels_no)
+            @wheels_no=wheels_no
+          end
+          def wheels
+            @wheels_no
+          end
+      end
+%p
+  Ora per includere i nostri moduli e creare il mixin non serve altro che
+  utilizzare la parola chiave 
+  %em
+    include.
+  %pre
+    %code{:class=>'language-ruby coderay'}
+      :escaped
+          class Scooter
+          include Item
+          include Veicolo
+          def initialize(options=nil)
+            self.cost=options['cost'] unless options['cost']
+            self.wheels=options['wheels'] unless options['wheels']
+          end
+          def to_s
+            puts 'Sono uno scooter'
+            puts 'Ho ' + self.wheels.to_s + ' ruote'
+            puts 'Costo ' + self.cost.to_s + ' euro'
+          end
+      end
+%p
+  Semplice e permette di avere una definizione di classe che è pulita e
+  semplice da comprendere ad una prima lettura.
+  %br
+  Teniamo a mente una differenza
+  %strong
+    fondamentale
+  tra classi e moduli.
+  %br
+  Il modulo, non ha un'istanza associata ad esso quindi devono essere
+  utilizzati unicamente per raggruppare i metodi con cui vogliamo estendere le
+  notre classi.
+
+%p
+  Utilizzando i mixin è molto semplice creare blocchetti atomici di codice e
+  combinarli in maniera tale da creare delle classi che riflettano esattamente
+  lo scopo per le quali sono state costruite senza essere caricate di metodi
+  inutili derivanti da un uso poco accorto dell'ereditarietà.
+
+ 
