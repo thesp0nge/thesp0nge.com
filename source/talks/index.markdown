@@ -1,20 +1,19 @@
 ---
 layout: page
-title: "talks"
+title: "Talk su application security"
 date: 2012-01-20 08:29
 comments: true
 sharing: true
 footer: true
 ---
 ---
-title: Talk su application security
 kind: page
 ---
 
-%p
-  Questi sono i talk che ho tenuto su temi di application security dal 2008
-  ad oggi. Mancano putroppo i video dei talk in Belgio nel 2008 ed alcuni
-  evengi organizzati dal capitolo Italiano di Owasp.
+Questi sono i talk che ho tenuto su temi di application security dal 2008
+ad oggi. Mancano putroppo i video dei talk in Belgio nel 2008 ed alcuni
+evengi organizzati dal capitolo Italiano di Owasp.
+
 %p
   %ul.talks
     %li

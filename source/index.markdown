@@ -4,4 +4,9 @@ comments: false
 sharing: true
 footer: true
 ---
-This is a great landing page...
+
+Hi and welcome to [Kitchen](http://thesp0nge.com), my website about application security, hacking and life.
+
+
+
+
