@@ -6,7 +6,7 @@ title: "When a proper error message makes the difference"
 date:  2012-01-11 08:29
 ---
 
-Look at this error: {% img '/images/rack_lint_error.png' %}
+Look at this error: {% img http://thesp0nge.com/images/rack_lint_error.png%}
 
 What would you think about to solve it?
 
@@ -23,7 +23,7 @@ This didn't solve my problems, the exception was still there.
 
 I finally decided to look all the trace and I discovered this [datamapper]('http://datamapper.org')
 error.
-{% img '/images/sinatra_error.png' 800 %}
+{% img http://thesp0nge.com/images/sinatra_error.png 800 %}
 
 What the hell... I have an old DB on my repo and I just need to migrate all
 the new models in order to create appropriate tables.
