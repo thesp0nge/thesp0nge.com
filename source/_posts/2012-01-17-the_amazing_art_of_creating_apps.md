@@ -1,8 +1,9 @@
 ---
 layout: post
 publish: true
-categories: ruby developmet bdd tdd web google "sw engineer" hacking discovery
+categories: ruby developmet bdd tdd web google sw-engineer hacking discovery
 title: "The amazing art of creating apps"
+comments: true
 date:  2012-01-17 08:29
 ---
 

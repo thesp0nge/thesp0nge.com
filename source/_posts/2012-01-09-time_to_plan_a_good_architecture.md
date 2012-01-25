@@ -1,6 +1,7 @@
 ---
 layout: post
 publish: true
+comments: true
 categories: ruby appsec tool hacking sast dast webapp aurora
 title: "Time to plan a good architecture"
 date: 2012-01-09 08:29

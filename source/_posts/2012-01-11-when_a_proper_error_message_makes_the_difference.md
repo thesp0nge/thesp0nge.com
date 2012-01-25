@@ -2,6 +2,7 @@
 layout: post
 publish: true
 categories: ruby rvm sinatra errors ux pow lion discovery rack datamapper
+comments: true
 title: "When a proper error message makes the difference"
 date:  2012-01-11 08:29
 ---
