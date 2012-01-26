@@ -33,6 +33,8 @@ Gente pronta al giudizio veloce come se fosse al fast food?
 Mamma mia, io poi me le vedo queste persone alle urne a decidere anche del mio
 di futuro... speriamo che almeno lì il pressapochismo sia di meno.
 
+<!-- more -->
+
 ## Gennaio io lo odio, ma ho rifatto il blog
 
 Yeah, ho alla fine sposato [octopress](http://octopress.org) come piattaforma

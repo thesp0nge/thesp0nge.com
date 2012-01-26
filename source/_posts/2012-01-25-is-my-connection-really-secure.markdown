@@ -23,6 +23,8 @@ list all available ciphers in a HTTPS connection.
 The tool is no longer maintained and it requires and old .NET libraries version
 and, most important, it doesn't run in a unix based environment.
 
+<!-- more -->
+
 ## The Google and the Net
 
 In a second I found some great bash script for enumerating available scripts. 
