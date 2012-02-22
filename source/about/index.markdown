@@ -7,7 +7,7 @@ sharing: true
 footer: true
 ---
 
-## Dal 1976 ai giorni nostri
+## puts self.bio
 
 Paolo nasce in un caldo pomeriggio del 1976 a Milano. Già in tenera età;
 Paolo inizia a smontare i propri giochi per capirne il funzionamento.
@@ -53,6 +53,11 @@ chitarrista ed un'aspirante cintura nera di Taekwondo-ITF.
 Possiamo chiamare questa fase della vita di Paolo: 
 _'Stay hungry, stay foolish'_
 
-Paolo in un'immagine
+## puts self.contacts
+
+* Mail: [thesp0nge\_at\_gmail\_dot\_com](mailto:thesp0nge@gmail.com)
+* skype: thesp0nge
+
+## render self.to\_img
 
 {%img /images/thesp0nge_tagcloud.png 'thesp0nge in una tag cloud' 'thesp0nge in una tag cloud' %}
