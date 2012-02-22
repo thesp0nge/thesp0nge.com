@@ -28,6 +28,8 @@ data to a confidentially mess.
 
 But the truth is that this is the _real_ world.
 
+<!-- more -->
+
 ## assert\_equal "in the middle"
 
 Common winsdom says that the truth is in the middle between two counterparts
