@@ -1,11 +1,11 @@
 ---
 layout: page
-comments: false
+comments: true
 sharing: true
 footer: true
 ---
 
-{% img left /images/thesp0nge.jpg 500 600 thesp0nge thesp0nge %}
+{% img left /images/thesp0nge.jpg 200 166 thesp0nge thesp0nge %}
 <span class="capital">H</span>i and welcome to [Kitchen](http://thesp0nge.com),
 my website about application security, hacking and life.
 
