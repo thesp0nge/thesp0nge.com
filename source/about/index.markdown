@@ -35,10 +35,9 @@ revisioni del codice e scriverne fix per correggere problemi di sicurezza.
 Ama ancora creare web application e lo fa principalmente con Ruby ed il
 framework Rails utilizzando tecniche di Behaviour Driven Development.
 
-Questo lo ha trasformato in un application security specialist intento a
-trsformare il ciclo di vita del software della più realtà
-italiana in campo media-broadcasting, aggiungendo tocchi di sicurezza qui e
-lì.
+Questo lo ha trasformato in un application security specialist in grado di
+aiutare gli sviluppatori a scrivere codice sicuro... bucando le loro
+applicazioni.
 
 &Egrave; coinvolto in Owasp come project leader di Owasp Orizon
 (un motore open per code review) e per Owasp Esapi Ruby - il porting delle
@@ -57,6 +56,7 @@ _'Stay hungry, stay foolish'_
 
 * Mail: [thesp0nge\_at\_gmail\_dot\_com](mailto:thesp0nge@gmail.com)
 * skype: thesp0nge
+* technical blog: [armoredcode.com](http://armoredcode.com)
 
 ## render self.to\_img
 

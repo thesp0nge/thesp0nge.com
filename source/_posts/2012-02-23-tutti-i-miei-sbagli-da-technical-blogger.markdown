@@ -37,7 +37,7 @@ Diciamo che sarà il mio nascondiglio online.
 
 Invece ho deciso di iniziare da zero un blog tecnico serio sui temi di
 application security, sviluppo sicuro, bug hunting, code review ed ospitarlo su
-[argmoredcode.com](http://armoredcode.com).
+[armoredcode.com](http://armoredcode.com).
 
 Lì parleremo di [ciphersurfer](https://github.com/thesp0nge/ciphersurfer), di
 [enchant](https://github.com/thesp0nge/enchant), di
