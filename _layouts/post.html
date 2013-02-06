@@ -1,0 +1,33 @@
+---
+layout: default
+---
+
+<section class="content">
+<div class="row">
+  <div class="span1">
+    <h4 class="byline">
+      {{ page.date | date: "%B %e, %Y" }}
+    </h4>
+  </div>
+
+  <div class="span8">
+    <h1>
+      <a href="{{ page.url }}">{{ page.title }}</a>
+    </h1>
+  </div>
+</div>
+
+<div class="row">
+  <div class="span10">
+    {{ content }}
+  </div>
+</div>
+<div class="row">
+  <div class="span10">
+
+  <section class="meta">
+    {% include post_copy.html %}
+  </section>
+</div>
+</div>
+</section>
